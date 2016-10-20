@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="msapplication-tap-highlight" content="no"/>
+        <meta name="description"
+              content="Sistema de Medidas Cautelares utilizando Material Design do Google. "/>
+        <meta name="keywords"
+              content="Medidas, Cautelares, Google, Material Design"/>
+        <title>Página de Login | Sistema de Medidas Cautelares</title>
+        <link rel="icon shortcut" href="resources/images/favicon/favicon-32x32.png"  sizes="32x32" />
+        <link rel="apple-touch-icon-precomposed" href="resources/images/favicon/apple-touch-icon-152x152.png"/>
+        <!-- For iPhone -->
+        <meta name="msapplication-TileColor" content="#00bcd4"/>
+        <meta name="msapplication-TileImage" content="resources/images/favicon/mstile-144x144.png"/>
+        <!-- CORE CSS-->
+
+        <link href="resources/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="resources/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <!-- Custome CSS-->
+        <link href="resources/css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="resources/css/layouts/page-center.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+        <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+        <link href="resources/js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="resources/js/plugins/sweetalert/dist/sweetalert.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    </h:head>
+
+    <h:body style="background-color: royalblue">
+        <!-- Start Page Loading -->
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+        </div>
+        <!--Fim do carregamento -->
+        <div id="login-page" class="row">
+            <div class="col s12 z-depth-4 card-panel">
+                <form class="login-form formValidate right-alert" jsf:id="form">
+
+                    <p:growl autoUpdate="true" showDetail="true" id="growl"  />
+
+                    <div class="row">
+                        <div class="input-field col s12 center">
+                            <img src="resources/images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login" />
+                            <p class="center login-form-text">Sistema de Medidas Cautelares </p>
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <i class="mdi-social-person-outline prefix"></i>
+                            <input jsf:id="username"  jsf:value="#{loginBean.usuario.funcional}" type="text" />
+                            <label for="username" class="center-align">Funcional</label>
+
+
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-lock-outline prefix"></i>
+                            <input jsf:id="password" type="password" jsf:value="#{loginBean.usuario.senha}" />
+                            <label for="password">Senha</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <button update="@form"  class="btn waves-effect waves-light blue col s12"  jsf:action="#{loginBean.efetuarLogin}">
+                                Entrar
+                                <i class="mdi-action-input right"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12  ">
+                            <p class="margin medium-small"><a href="registro.xhtml">Solicite seu registro!</a></p>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+        <!-- ================================================
+        Scripts
+        ================================================ -->
+
+        <!-- jQuery Library -->
+        <script type="text/javascript" src="resources/js/plugins/jquery-1.11.2.min.js"></script>
+        <!--materialize js-->
+        <script type="text/javascript" src="resources/js/materialize.js"></script>
+        <!--prism-->
+        <script type="text/javascript" src="resources/js/plugins/prism/prism.js"></script>
+        <!--scrollbar-->
+        <script type="text/javascript" src="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
+        <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+        <script type="text/javascript" src="resources/js/plugins.js"></script>
+        <!--custom-script.js - Add your own theme custom JS-->
+        <script type="text/javascript" src="resources/js/custom-script.js"></script>
+
+        <script type="text/javascript" src="resources/js/plugins/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    </h:body>
+</html>

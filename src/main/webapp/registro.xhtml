@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="msapplication-tap-highlight" content="no"/>
+        <meta name="description"
+              content="Sistema de Medidas Cautelares utilizando Material Design do Google. "/>
+        <meta name="keywords"
+              content="Medidas, Cautelares, Google, Material Design"/>
+        <title>Cadastro | Sistema de Medidas Cautelares</title>
+        <link rel="icon shortcut" href="resources/images/favicon/favicon-32x32.png"  sizes="32x32" />
+        <link rel="apple-touch-icon-precomposed" href="resources/images/favicon/apple-touch-icon-152x152.png"/>
+        <!-- For iPhone -->
+        <meta name="msapplication-TileColor" content="#00bcd4"/>
+        <meta name="msapplication-TileImage" content="resources/images/favicon/mstile-144x144.png"/>
+        <!-- CORE CSS-->
+
+        <link href="resources/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="resources/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <!-- Custome CSS-->    
+        <link href="resources/css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="resources/css/layouts/page-center.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+        <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+        <link href="resources/js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection" />
+        <link href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    </h:head>
+
+    <h:body style="background-color: royalblue">
+
+        <p:ajaxStatus styleClass="ajax-status">
+            <f:facet name="start">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-red-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </f:facet>
+            <f:facet name="complete">
+                <h:outputText value=""/>
+            </f:facet>
+        </p:ajaxStatus>
+
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+        </div>
+
+        <div id="login-page" class="row">
+            <div class="col s12 z-depth-4 card-panel">
+                <h:form styleClass="col s12" id="form" >
+                    <!--Logo e texto -->
+                    <div class="row">
+                        <div class="input-field col s12 center">
+                            <img src="resources/images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login" />
+                            <h4 class="header2">Apenas para funcionários da área de Segurança Pública</h4>
+                            <p class="center login-form-text">Faça seu registro</p>
+
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="row margin">
+                        <div class="input-field col s6">
+                            <i class="mdi-social-person-outline prefix"></i>
+                            <input type="text" jsf:id="nome" jsf:value="#{usuarioBean.usuario.nome}"/>
+                            <label for="nome">Nome Completo</label>
+                           
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="mdi-social-person-outline prefix"></i>
+                            <input type="text" jsf:id="guerra" jsf:value="#{usuarioBean.usuario.nomeGuerra}"/>
+                            <label for="guerra">Nome De Guerra</label>
+                        </div>
+                    </div>
+
+                    <div class="row margin">
+                        <div class="input-field col s6">
+                            <i class="mdi-content-mail prefix"></i>
+                            <input type="email" jsf:id="email" jsf:value="#{usuarioBean.usuario.email}"/>
+                            <label for="email">E-mail</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="mdi-action-home prefix"></i>
+                            <input type="text" jsf:id="cidade" jsf:value="#{usuarioBean.endereco.cidade}"/>
+                            <label for="cidade">Cidade</label>
+
+                        </div>
+                    </div>
+
+                    <div class="row margin">
+                        <div class="input-field col s6">
+                            <i class="mdi-action-lock-outline prefix"></i>
+                            <p:password id="password" match="password2" value="#{usuarioBean.usuario.senha}"/>
+                            <label for="password">Senha</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="mdi-action-lock-outline prefix"></i>
+                            <p:password id="password2" value="#{usuarioBean.usuario.senha}"/>
+                            <p:message for="password2"/>
+                            <label for="password2">Repita a senha</label>
+                        </div>
+                    </div>
+
+
+                    <div class="row margin">
+                        <div class="input-field col s6 ">
+
+                            <button    update="@form"
+                                    class="btn blue waves-effect waves-light col s12 center">
+                                 <i class="mdi-action-assignment left"></i>
+                                Registrar-se
+                            </button>
+
+
+                        </div>
+                        <div class="input-field col s6">
+                            <button class="btn blue waves-effect waves-light col s12 center" type="reset">
+                                Limpar
+                                <i class="mdi-action-highlight-remove left" />
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <br/>
+                        </div>
+                    </div>
+
+
+                </h:form>
+            </div>
+        </div>
+
+
+        <!-- ================================================
+        Scripts
+        ================================================ -->
+
+        <!-- jQuery Library -->
+        <script type="text/javascript" src="resources/js/plugins/jquery-1.11.2.min.js"></script>
+        <!--materialize js-->
+        <script type="text/javascript" src="resources/js/materialize.js"></script>
+        <!--prism-->
+        <script type="text/javascript" src="resources/js/plugins/prism/prism.js"></script>
+        <!--scrollbar-->
+        <script type="text/javascript" src="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
+        <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+        <script type="text/javascript" src="resources/js/plugins.js"></script>
+        <!--custom-script.js - Add your own theme custom JS-->
+        <script type="text/javascript" src="resources/js/custom-script.js"></script>
+
+    </h:body>
+</html>

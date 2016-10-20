@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+
+    <persistence-unit name="MedidasCautelares" transaction-type="RESOURCE_LOCAL">
+        <class>br.com.agilles.medidascautelares.endereco.Endereco</class>
+        <class>br.com.agilles.medidascautelares.medida.MedidaCautelar</class>
+        <class>br.com.agilles.medidascautelares.pessoa.Pessoa</class>
+        <class>br.com.agilles.medidascautelares.usuario.Usuario</class>
+        <class>br.com.agilles.medidascautelares.vitima.Vitima</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/medidascautelares"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="a1s2d3"/>
+            <property name="javax.persistence.schema-generation.database.action" value="create-or-extend-tables"/>
+            <property name="javax.persistence.validation.mode" value="none"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
