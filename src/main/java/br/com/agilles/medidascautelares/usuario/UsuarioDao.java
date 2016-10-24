@@ -17,4 +17,10 @@ public class UsuarioDao {
         boolean encontrado = !q.getResultList().isEmpty();
         return  encontrado;
     }
+
+    void registrarNovoUsuario(Usuario usuario) {
+        manager.getTransaction().begin();
+        manager.persist(usuario);
+        manager.getTransaction().commit();
+    }
 }

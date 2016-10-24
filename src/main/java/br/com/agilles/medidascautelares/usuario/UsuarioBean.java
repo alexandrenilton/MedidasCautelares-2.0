@@ -4,13 +4,17 @@ import br.com.agilles.medidascautelares.endereco.Endereco;
 import java.io.Serializable;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.context.RequestContext;
 
 /**
  * Created by jille on 17/10/2016.
  */
 @Named
-public class UsuarioBean implements Serializable{
+public class UsuarioBean implements Serializable {
 
+    @Inject
+    private UsuarioDao dao;
+    
     @Inject
     private Usuario usuario;
 
@@ -24,9 +28,7 @@ public class UsuarioBean implements Serializable{
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
-    
-    
+
     public void logar(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -38,8 +40,12 @@ public class UsuarioBean implements Serializable{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
-    
-    
-    
+
+    public String registrar() {
+        dao.registrarNovoUsuario(usuario);
+        
+        return "";
+        
+    }
+
 }

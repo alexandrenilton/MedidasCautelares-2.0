@@ -18,21 +18,21 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-
+    @NotEmpty(message = "Campo Nome está vazio")
     private String nome;
+
+    @NotEmpty(message = "Campo SobreNome está vazio")
     private String sobreNome;
+
     @NotEmpty(message = "Campo Funcional está vazio")
     private String funcional;
 
     @OneToOne
     private Endereco endereco;
-    
+
     private String senha;
     private String nomeGuerra;
     private String email;
-    
-    
-    
 
     public String getEmail() {
         return email;
@@ -41,7 +41,6 @@ public class Usuario implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
 
     public String getNomeGuerra() {
         return nomeGuerra;
@@ -50,8 +49,7 @@ public class Usuario implements Serializable {
     public void setNomeGuerra(String nomeGuerra) {
         this.nomeGuerra = nomeGuerra;
     }
-    
-    
+
     public Long getId() {
         return id;
     }
@@ -100,5 +98,4 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    
 }
