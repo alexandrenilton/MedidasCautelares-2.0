@@ -18,9 +18,10 @@ public class UsuarioDao {
         return  encontrado;
     }
 
-    void registrarNovoUsuario(Usuario usuario) {
+    public void registrarNovoUsuario(Usuario usuario) {
         manager.getTransaction().begin();
         manager.persist(usuario);
         manager.getTransaction().commit();
+        manager.close();
     }
 }

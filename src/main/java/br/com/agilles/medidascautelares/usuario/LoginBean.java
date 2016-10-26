@@ -23,7 +23,7 @@ public class LoginBean implements Serializable {
         if (usuarioExiste) {
             bean.logar(usuario);
             RequestContext contexto = RequestContext.getCurrentInstance();
-            contexto.execute("swal('Sucess', 'Usuário Logado com sucesso', 'sucess')");
+            contexto.execute("swal('Sucess', 'Usuário Logado com sucesso', 'success')");
 
             return "index?faces-redirect=true";
         } else{

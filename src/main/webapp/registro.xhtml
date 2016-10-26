@@ -35,7 +35,7 @@
         <link href="resources/js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection" />
         <link href="resources/js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
         <link href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection" />
-        
+
     </h:head>
 
     <h:body style="background-color: royalblue">
@@ -86,22 +86,22 @@
                         <div class="input-field col s6">
                             <i class="mdi-social-person-outline prefix"></i>
                             <label for="nome" >Nome Completo</label>
-                            <input type="text" name="nome" class="validate" jsf:id="nome"  jsf:value="#{usuarioBean.usuario.nome}" />
+                            <input type="text"  class="validate" jsf:id="nome"  jsf:value="#{usuarioBean.usuario.nome}" />
                         </div>
-                       
+
                         <div class="input-field col s6">
                             <i class="mdi-social-person-outline prefix"></i>
                             <input type="text" jsf:id="guerra" jsf:value="#{usuarioBean.usuario.nomeGuerra}"/>
                             <label for="guerra">Nome De Guerra</label>
                         </div>
-                        
+
                     </div>
 
                     <div class="row margin">
                         <div class="input-field col s6">
-                            <i class="mdi-content-mail prefix"></i>
-                            <input type="email" jsf:id="email" jsf:value="#{usuarioBean.usuario.email}"/>
-                            <label for="email">E-mail</label>
+                            <i class="mdi-action-lock-outline prefix"></i>
+                            <input type="password" jsf:id="password" jsf:value="#{usuarioBean.usuario.senha}"/>
+                            <label for="password">Senha</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="mdi-action-home prefix"></i>
@@ -111,24 +111,21 @@
                     </div>
 
                     <div class="row margin">
-                        <div class="input-field col s6">
-                            <i class="mdi-action-lock-outline prefix"></i>
-                            <p:password id="password" match="password2" value="#{usuarioBean.usuario.senha}"/>
-                            <label for="password">Senha</label>
+                        <div class="input-field col s12">
+
+                            <i class="mdi-content-mail prefix"></i>
+                            <input type="email" jsf:id="email" jsf:value="#{usuarioBean.usuario.email}"/>
+                            <label for="email">E-mail</label>
+
                         </div>
-                        <div class="input-field col s6">
-                            <i class="mdi-action-lock-outline prefix"></i>
-                            <p:password id="password2" value="#{usuarioBean.usuario.senha}"/>
-                            <p:message for="password2"/>
-                            <label for="password2">Repita a senha</label>
-                        </div>
+
                     </div>
 
 
                     <div class="row margin">
                         <div class="input-field col s6 ">
 
-                            <button update="@form" class="btn blue waves-effect waves-light col s12 center" 
+                            <button update="@form" jsf:id="btnRegistrar" class="btn blue waves-effect waves-light col s12 center"
                                     jsf:action="#{usuarioBean.registrar}">
                                 Registrar-se
                                 <i class="mdi-action-assignment left"></i>
@@ -174,11 +171,8 @@
         <!--custom-script.js - Add your own theme custom JS-->
         <script type="text/javascript" src="resources/js/custom-script.js"></script>
         <script type="text/javascript" src="resources/js/plugins/sweetalert/dist/sweetalert.min.js"></script>
-        <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>
 
         <!-- chartist -->
-        <script type="text/javascript" src="js/plugins/jquery-validation/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="resources/js/plugins/jquery-validation/additional-methods.min.js"></script>
 
         <!--plugins.js - Some Specific JS codes for Plugin Settings-->
         <script type="text/javascript" src="resources/js/plugins.js"></script>
