@@ -3,6 +3,7 @@ package br.com.agilles.medidascautelares.usuario;
 import br.com.agilles.medidascautelares.endereco.Endereco;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,7 +13,7 @@ import org.primefaces.context.RequestContext;
  * Created by jille on 17/10/2016.
  */
 @Named
-@RequestScoped
+@SessionScoped
 public class UsuarioBean implements Serializable {
 
     @Inject
@@ -51,8 +52,8 @@ public class UsuarioBean implements Serializable {
         dao.registrarNovoUsuario(usuario);
         eventoRegistro.fire(usuario);
         RequestContext contexto = RequestContext.getCurrentInstance();
-        contexto.execute("swal('Salvo', 'Um email será enviado para você, para concluir, siga as instruções!', 'success')");
-        return "";
+        contexto.execute("swal('Sucesso!', 'Um email será enviado para o endereço cadastrado, para concluir, siga as instruções do email!', 'success')");
+        return ""   ;
     }
 
     

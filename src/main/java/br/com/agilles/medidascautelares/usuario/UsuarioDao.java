@@ -3,11 +3,12 @@ package br.com.agilles.medidascautelares.usuario;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.io.Serializable;
 
 /**
  * Created by jille on 17/10/2016.
  */
-public class UsuarioDao {
+public class UsuarioDao implements Serializable{
     @Inject
     EntityManager manager;
 

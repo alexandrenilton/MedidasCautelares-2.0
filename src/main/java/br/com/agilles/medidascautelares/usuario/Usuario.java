@@ -1,12 +1,15 @@
 package br.com.agilles.medidascautelares.usuario;
 
 import br.com.agilles.medidascautelares.endereco.Endereco;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -30,8 +33,14 @@ public class Usuario implements Serializable {
     @OneToOne
     private Endereco endereco;
 
+    @NotEmpty(message = "Campo Senha está vazio")
     private String senha;
+
+    @NotEmpty(message = "Campo Nome de Guerra está vazio")
     private String nomeGuerra;
+
+    @NotEmpty(message = "Campo Email está vazio")
+    @Email
     private String email;
 
     public String getEmail() {
