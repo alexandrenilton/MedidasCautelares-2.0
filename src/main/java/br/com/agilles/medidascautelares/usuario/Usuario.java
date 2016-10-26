@@ -24,6 +24,8 @@ public class Usuario implements Serializable {
     @NotEmpty(message = "Campo Nome está vazio")
     private String nome;
 
+    private boolean ativo = false;
+
     @NotEmpty(message = "Campo SobreNome está vazio")
     private String sobreNome;
 
@@ -107,4 +109,11 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
 }

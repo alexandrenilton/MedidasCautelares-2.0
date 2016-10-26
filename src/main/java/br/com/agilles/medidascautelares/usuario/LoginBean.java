@@ -21,12 +21,19 @@ public class LoginBean implements Serializable {
     public String efetuarLogin() {
         boolean usuarioExiste = dao.existe(usuario);
         if (usuarioExiste) {
-            bean.logar(usuario);
-            RequestContext contexto = RequestContext.getCurrentInstance();
-            contexto.execute("swal('Sucess', 'Usuário Logado com sucesso', 'success')");
+            if (usuario.isAtivo()) {
+                bean.logar(usuario);
+                RequestContext contexto = RequestContext.getCurrentInstance();
+                contexto.execute("swal('Sucess', 'Usuário Logado com sucesso', 'success')");
+                return "home?faces-redirect=true";
 
-            return "index?faces-redirect=true";
-        } else{
+            } else {
+                RequestContext contexto = RequestContext.getCurrentInstance();
+                contexto.execute("swal('Quase lá!', 'Você iniciou seu registro, mas ainda não foi liberado seu acesso', 'warning')");
+                return "";
+            }
+
+        } else {
             RequestContext contexto = RequestContext.getCurrentInstance();
             contexto.execute("swal('Erro', 'Funcional ou senha não confere', 'error')");
 

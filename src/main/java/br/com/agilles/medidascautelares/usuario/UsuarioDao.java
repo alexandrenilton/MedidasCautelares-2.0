@@ -25,4 +25,5 @@ public class UsuarioDao implements Serializable{
         manager.getTransaction().commit();
         manager.close();
     }
+
 }

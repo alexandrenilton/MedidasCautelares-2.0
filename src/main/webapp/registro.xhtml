@@ -40,27 +40,7 @@
 
     <h:body style="background-color: royalblue">
 
-        <p:ajaxStatus styleClass="ajax-status">
-            <f:facet name="start">
-                <div class="preloader-wrapper big active">
-                    <div class="spinner-layer spinner-red-only">
-                        <div class="circle-clipper left">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="gap-patch">
-                            <div class="circle"></div>
-                        </div>
-                        <div class="circle-clipper right">
-                            <div class="circle"></div>
-                        </div>
-                    </div>
-                </div>
-            </f:facet>
-            <f:facet name="complete">
-                <h:outputText value=""/>
-            </f:facet>
-        </p:ajaxStatus>
-
+       
         <div id="loader-wrapper">
             <div id="loader"></div>
             <div class="loader-section section-left"></div>
@@ -133,7 +113,7 @@
                         <div class="input-field col s6 ">
 
                             <button update="@form" jsf:id="btnRegistrar" class="btn blue waves-effect waves-light col s12 center"
-                                    jsf:action="#{usuarioBean.registrar}">
+                                    jsf:action="#{usuarioBean.registrar}">                               
                                 Registrar-se
                                 <i class="mdi-action-assignment left"></i>
                             </button>
