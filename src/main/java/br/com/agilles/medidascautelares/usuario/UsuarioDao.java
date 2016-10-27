@@ -3,6 +3,7 @@ package br.com.agilles.medidascautelares.usuario;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.io.Serializable;
 
 /**
@@ -26,4 +27,14 @@ public class UsuarioDao implements Serializable{
         manager.close();
     }
 
+
+
+    public Usuario completarUsuarioNoLogin(Usuario usuario) {
+        TypedQuery<Usuario> query = manager.createQuery("SELECT u FROM  Usuario u WHERE u.funcional = :funcional AND u.senha = :senha", Usuario.class);
+        query.setParameter("funcional", usuario.getFuncional());
+        query.setParameter("senha", usuario.getSenha());
+
+        Usuario u = query.getSingleResult();
+        return u;
+    }
 }

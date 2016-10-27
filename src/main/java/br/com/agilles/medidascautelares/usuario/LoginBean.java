@@ -20,6 +20,7 @@ public class LoginBean implements Serializable {
 
     public String efetuarLogin() {
         boolean usuarioExiste = dao.existe(usuario);
+        usuario = dao.completarUsuarioNoLogin(usuario);
         if (usuarioExiste) {
             if (usuario.isAtivo()) {
                 bean.logar(usuario);
