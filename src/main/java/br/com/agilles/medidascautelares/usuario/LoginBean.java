@@ -20,12 +20,10 @@ public class LoginBean implements Serializable {
 
     public String efetuarLogin() {
         boolean usuarioExiste = dao.existe(usuario);
-        usuario = dao.completarUsuarioNoLogin(usuario);
         if (usuarioExiste) {
+            usuario = dao.completarUsuarioNoLogin(usuario);
             if (usuario.isAtivo()) {
                 bean.logar(usuario);
-                RequestContext contexto = RequestContext.getCurrentInstance();
-                contexto.execute("swal('Sucess', 'Usuário Logado com sucesso', 'success')");
                 return "home?faces-redirect=true";
 
             } else {
