@@ -1,0 +1,131 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:p="http://primefaces.org/ui">
+
+    <aside id="left-sidebar-nav">
+        <ul id="slide-out" class="side-nav fixed leftside-navigation">
+            <li class="user-details cyan darken-2">
+                <div class="row">
+                    <div class="col col s4 m4 l4">
+                        <img src="resources/images/avatar.jpg" alt=""
+                             class="circle responsive-img valign profile-image"/>
+                    </div>
+                    <div class="col col s8 m8 l8">
+                        <ul id="profile-dropdown" class="dropdown-content">
+                            <li><a href="#"><i class="mdi-action-face-unlock"></i> Perfil</a>
+                            </li>
+                            <li><a href="#"><i class="mdi-action-settings"></i> Ajustes</a>
+                            </li>
+                            <li><a href="#"><i class="mdi-communication-live-help"></i> Ajuda</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="mdi-action-lock-outline"></i> Travar</a>
+                            </li>
+                            <li><a href="#"><i class="mdi-hardware-keyboard-tab"></i> Sair</a>
+                            </li>
+                        </ul>
+                        <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn"
+                           href="#" data-activates="profile-dropdown">#{usuarioBean.usuario.nomeGuerra}<i
+                                class="mdi-navigation-arrow-drop-down right"></i></a>
+                        <p class="user-roal">Guarda Civil</p>
+                    </div>
+                </div>
+            </li>
+            <li class="bold active"><a href="home.xhtml" class="waves-effect waves-cyan"><i
+                    class="mdi-action-home"></i> Dashboard</a>
+            </li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i
+                            class="mdi-social-people"></i> Pessoas</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#"><i
+                                        class="mdi-action-note-add"></i>Cadastrar</a>
+                                </li>
+                                <li><a href="#"><i
+                                        class="mdi-action-find-in-page"></i>Consultar</a>
+                                </li>
+                                <li><a href="#"><i
+                                        class="mdi-editor-mode-edit"></i>Alterar</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i
+                            class="mdi-social-person-outline"></i> Vítimas</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#"><i
+                                        class="mdi-action-note-add"></i>Cadastrar</a>
+                                </li>
+                                <li><a href="#"><i
+                                        class="mdi-action-find-in-page"></i>Consultar</a>
+                                </li>
+                                <li><a href="#"><i
+                                        class="mdi-editor-mode-edit"></i>Alterar</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i
+                            class="mdi-maps-place"></i> Endereços</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#"><i
+                                        class="mdi-content-add-circle"></i>Cadastrar</a>
+                                </li>
+                                <li><a href="#"><i
+                                        class="mdi-action-search"></i>Consultar</a>
+                                </li>
+                                <li><a href="#"><i
+                                        class="mdi-editor-mode-edit"></i>Alterar</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i
+                            class="mdi-editor-insert-comment"></i> Medidas Cautelares</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a href="#"><i
+                                        class="mdi-content-add-circle"></i>Cadastrar</a>
+                                </li>
+                                <li><a href="#"><i
+                                        class="mdi-action-search"></i>Consultar</a>
+                                </li>
+                                <li><a href="#"><i
+                                        class="mdi-editor-mode-edit"></i>Alterar</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </li>
+
+        </ul>
+        <a href="#" data-activates="slide-out"
+           class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i
+                class="mdi-navigation-menu"></i></a>
+    </aside>
+    <!-- END LEFT SIDEBAR NAV-->
+
+
+</ui:composition>
