@@ -9,7 +9,8 @@ import java.io.Serializable;
 /**
  * Created by jille on 17/10/2016.
  */
-public class UsuarioDao implements Serializable{
+public class UsuarioDao implements Serializable {
+
     @Inject
     EntityManager manager;
 
@@ -17,7 +18,7 @@ public class UsuarioDao implements Serializable{
         Query q = manager.createQuery("SELECT u from Usuario u where u.funcional = :pFuncional and u.senha = :pSenha")
                 .setParameter("pFuncional", usuario.getFuncional()).setParameter("pSenha", usuario.getSenha());
         boolean encontrado = !q.getResultList().isEmpty();
-        return  encontrado;
+        return encontrado;
     }
 
     public void registrarNovoUsuario(Usuario usuario) {
@@ -27,8 +28,6 @@ public class UsuarioDao implements Serializable{
         manager.close();
     }
 
-
-
     public Usuario completarUsuarioNoLogin(Usuario usuario) {
         TypedQuery<Usuario> query = manager.createQuery("SELECT u FROM  Usuario u WHERE u.funcional = :funcional AND u.senha = :senha", Usuario.class);
         query.setParameter("funcional", usuario.getFuncional());
@@ -36,5 +35,14 @@ public class UsuarioDao implements Serializable{
 
         Usuario u = query.getSingleResult();
         return u;
+    }
+
+    public boolean validarEmailExistente(Usuario usuario) {
+        boolean emailExistente = false;
+        TypedQuery<Usuario> query = manager.createQuery("SELECT u FROM  Usuario u WHERE u.email = :email", Usuario.class);
+        query.setParameter("email", usuario.getEmail());
+        
+        return !query.getResultList().isEmpty();
+
     }
 }

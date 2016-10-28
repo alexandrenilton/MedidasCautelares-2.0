@@ -50,7 +50,8 @@
         <div id="login-page" class="row">
             <div class="col s12 z-depth-4 card-panel">
                 <h:form styleClass="col s12 formValidate right-alert" id="formValidate" >
-                    <p:growl id="msg" autoUpdate="true" showDetail="false" />
+                    <p:growl id="msg" autoUpdate="false" showDetail="true" />
+                   
 
                     <!--Logo e texto -->
                     <div class="row">
@@ -71,7 +72,7 @@
 
                         <div class="input-field col s6">
                             <i class="mdi-social-person-outline prefix"></i>
-                            <input type="text" jsf:id="guerra" jsf:value="#{usuarioBean.usuario.nomeGuerra}"/>
+                            <input type="text" jsf:id="guerra" class="validate" jsf:value="#{usuarioBean.usuario.nomeGuerra}"/>
                             <label for="guerra">Nome De Guerra</label>
                         </div>
 
@@ -80,12 +81,12 @@
                     <div class="row margin">
                         <div class="input-field col s6">
                             <i class="mdi-action-lock-outline prefix"></i>
-                            <input type="password" jsf:id="password" jsf:value="#{usuarioBean.usuario.senha}"/>
+                            <input type="password" jsf:id="password" class="validate" jsf:value="#{usuarioBean.usuario.senha}"/>
                             <label for="password">Senha</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="mdi-action-home prefix"></i>
-                            <input type="text" jsf:id="cidade" jsf:value="#{usuarioBean.endereco.cidade}"/>
+                            <input type="text" jsf:id="cidade" class="validate" jsf:value="#{usuarioBean.endereco.cidade}"/>
                             <label for="cidade">Cidade</label>
                         </div>
                     </div>
@@ -94,14 +95,17 @@
                         <div class="input-field col s6">
 
                             <i class="mdi-content-mail prefix"></i>
-                            <input type="email" jsf:id="email" jsf:value="#{usuarioBean.usuario.email}"/>
+                            <input type="email" jsf:id="email" class="validate" jsf:value="#{usuarioBean.usuario.email}">
+                                <p:ajax event="blur" listener="#{usuarioBean.validarEmail}" process="@this" update="msg" />
+                            </input>
                             <label for="email">E-mail</label>
+                           
 
                         </div>
                         <div class="input-field col s6">
 
                             <i class="mdi-content-mail prefix"></i>
-                            <input type="text" jsf:id="funcional" jsf:value="#{usuarioBean.usuario.funcional}"/>
+                            <input type="text" jsf:id="funcional" class="validate" jsf:value="#{usuarioBean.usuario.funcional}"/>
                             <label for="funcional">Funcional</label>
 
                         </div>
