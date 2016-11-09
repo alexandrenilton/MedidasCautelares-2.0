@@ -149,6 +149,7 @@ function DatePicker( picker, settings ) {
  */
 DatePicker.prototype.set = function( type, value, options ) {
 
+
     var calendar = this,
         calendarItem = calendar.item
 
@@ -200,6 +201,7 @@ DatePicker.prototype.get = function( type ) {
  * Create a picker date object.
  */
 DatePicker.prototype.create = function( type, value, options ) {
+
 
     var isInfiniteValue,
         calendar = this
@@ -639,6 +641,8 @@ DatePicker.prototype.parse = function( type, value, options ) {
  * Various formats to display the object in.
  */
 DatePicker.prototype.formats = (function() {
+
+
 
     // Return the length of the first word in a collection.
     function getWordLengthFromCollection( string, collection, dateObject ) {
