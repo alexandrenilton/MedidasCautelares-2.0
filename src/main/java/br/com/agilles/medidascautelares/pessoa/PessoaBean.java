@@ -25,6 +25,7 @@ public class PessoaBean implements Serializable{
     private Endereco endereco;
     
     public void gravarPessoa(){
+        
         if(dao.gravarPessoa(pessoa)){
             RequestContext contexto = RequestContext.getCurrentInstance();
             contexto.execute("swal('Sucesso!', 'Nova pessoa inserida no sistema!', 'success')");

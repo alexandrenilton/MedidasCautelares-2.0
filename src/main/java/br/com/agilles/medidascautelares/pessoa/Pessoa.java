@@ -28,14 +28,14 @@ public class Pessoa implements Serializable{
     private String tipoDocumento;
     private String mae;
 
-    private Date nascimento;
+    private String nascimento;
 
 
-    public Date getNascimento() {
+    public String getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(String nascimento) {
         this.nascimento = nascimento;
     }
 

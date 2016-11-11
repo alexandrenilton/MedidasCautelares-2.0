@@ -21,12 +21,12 @@ $(function () {
 
     // Search class for focus
     $('.header-search-input').focus(
-            function () {
-                $(this).parent('div').addClass('header-search-wrapper-focus');
-            }).blur(
-            function () {
-                $(this).parent('div').removeClass('header-search-wrapper-focus');
-            });
+        function () {
+            $(this).parent('div').addClass('header-search-wrapper-focus');
+        }).blur(
+        function () {
+            $(this).parent('div').removeClass('header-search-wrapper-focus');
+        });
 
     // Check first if any of the task is checked
     $('#task-card input:checkbox').each(function () {
@@ -74,25 +74,25 @@ $(function () {
     });
     // Translation Dropdown
     $('.translation-button').dropdown({
-        inDuration: 300,
-        outDuration: 225,
-        constrain_width: false, // Does not change width of dropdown to that of the activator
-        hover: true, // Activate on hover
-        gutter: 0, // Spacing from edge
-        belowOrigin: true, // Displays dropdown below the button
-        alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    }
+            inDuration: 300,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: true, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        }
     );
     // Notification Dropdown
     $('.notification-button').dropdown({
-        inDuration: 300,
-        outDuration: 225,
-        constrain_width: false, // Does not change width of dropdown to that of the activator
-        hover: true, // Activate on hover
-        gutter: 0, // Spacing from edge
-        belowOrigin: true, // Displays dropdown below the button
-        alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    }
+            inDuration: 300,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: true, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        }
     );
 
     // Materialize Tabs
@@ -165,17 +165,18 @@ $(function () {
     // Pikadate datepicker
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15, // Creates a dropdown of 15 years to control year
+        selectYears: 105, // Creates a dropdown of 15 years to control year
         monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
         monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        weekdaysFull: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-        weekdaysShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'],
+        weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
         today: "Hoje",
         clear: "Limpar",
         close: "Fechar",
-        closeOnSelect: true,
-        closeOnClear: true
-        
+        closeOnSelect: false,
+        closeOnClear: false,
+        format: "dd/mm/yyyy",
+        max: -1 // no customers form the future please
 
     });
 
@@ -195,7 +196,7 @@ $(function () {
     // Fullscreen
     function toggleFullScreen() {
         if ((document.fullScreenElement && document.fullScreenElement !== null) ||
-                (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+            (!document.mozFullScreen && !document.webkitIsFullScreen)) {
             if (document.documentElement.requestFullScreen) {
                 document.documentElement.requestFullScreen();
             } else if (document.documentElement.mozRequestFullScreen) {
@@ -270,6 +271,7 @@ $(function () {
             return false;
         }
     }
+
     if (is_touch_device()) {
         $('#nav-mobile').css({
             overflow: 'auto'
@@ -298,11 +300,6 @@ $(function () {
     /*
      * Advanced UI
      */
-
-
-
-
-
 
 
 }); // end of document ready
