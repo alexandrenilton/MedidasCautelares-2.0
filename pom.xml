@@ -86,7 +86,15 @@
             <version>1.0.0.Final</version>
             <scope>compile</scope>
         </dependency>
-    
+
+        <!-- https://mvnrepository.com/artifact/org.primefaces.extensions/primefaces-extensions -->
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>6.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>mysql</groupId>

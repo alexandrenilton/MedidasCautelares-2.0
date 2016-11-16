@@ -29,11 +29,14 @@
     <link href="resources/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <!-- Custome CSS-->
     <link href="resources/css/custom/custom.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="resources/js/plugins/sweetalert/dist/sweetalert.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="resources/js/plugins/sweetalert/dist/sweetalert.css" type="text/css" rel="stylesheet"
+          media="screen,projection"/>
 
 
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
     <link href="resources/js/plugins/prism/prism.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="resources/js/plugins/data-tables/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
     <link href="resources/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet"
           media="screen,projection"/>
     <link href="resources/js/plugins/sweetalert/dist/sweetalert.css" type="text/css" rel="stylesheet"
@@ -70,7 +73,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col s12 m12 l12">
-                                <h5 class="breadcrumbs-title">Dashboard</h5>
+                                <ui:insert name="breadcumb-title">
+                                    <h5 class="breadcrumbs-title">Dashboard</h5>
+                                </ui:insert>
                                 <ol class="breadcrumbs">
                                     <li><a href="home.xhtml">Medidas Cautelares</a></li>
                                     <li>
@@ -104,10 +109,10 @@
                                     class="large mdi-communication-live-help"></i></a></li>
                             <li><a href="app-widget.html" class="btn-floating yellow darken-1"><i
                                     class="large mdi-device-now-widgets"></i></a></li>
-                            <li><a href="app-calendar.html" class="btn-floating green"><i
-                                    class="large mdi-editor-insert-invitation"></i></a></li>
-                            <li><a href="app-email.html" class="btn-floating blue"><i
+                            <li><a href="#" class="btn-floating blue"><i
                                     class="large mdi-communication-email"></i></a></li>
+                            <li><a href="cadastroPessoas.xhtml" class="btn-floating green"><i
+                                    class="large mdi-action-account-circle"></i></a></li>
                         </ul>
                     </div>
                     <!-- Floating Action Button -->
@@ -140,8 +145,9 @@
     <script type="text/javascript" src="resources/js/plugins.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="resources/js/custom-script.js"></script>
+    <script type="text/javascript" src="resources/js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="resources/js/plugins/data-tables/data-tables-script.js"></script>
     <script type="text/javascript" src="resources/js/plugins/sweetalert/dist/sweetalert.min.js"></script>
-
 
 
 </h:body>

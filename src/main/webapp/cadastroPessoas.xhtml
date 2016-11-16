@@ -5,8 +5,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
 <ui:composition template="template.xhtml">
+
+    <ui:define name="breadcumb-title">
+        <h5 class="breadcrumbs-title">Cadastro de Pessoas</h5>
+
+    </ui:define>
     <ui:define name="breadcumb">
         <a href="#">Cadastro de Pessoas</a>
     </ui:define>
@@ -14,64 +20,117 @@
         <p class="caption">Pessoa a que se refere a Medida Cautelar! - Necessário para inserção da pessoa no cadastro de Medida Cautelar.</p>
 
         <div class="divider"></div>
+        <h:form styleClass="col s12" id="form">
 
-        <div id="basic-form" class="section">
-            <h:form styleClass="col s12">
+            <div id="basic-form" class="section">
                 <div class="row">
+                    <!-- Cadastro das informações pessoais -->
                     <div class="col s12 m6 16">
                         <div class="card-panel">
                             <h4 class="header">Dados Cadastrais</h4>
                             <div class="row">
-
                                 <div class="row">
                                     <div class="input-field col s12">
+                                        <i class="mdi-action-account-circle prefix"></i>
                                         <p:inputText id="nome" type="text" value="#{pessoaBean.pessoa.nome}"/>
                                         <label jsf:for="nome">Nome Completo</label>
 
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="input-field col s12">
+                                        <i class="mdi-action-face-unlock prefix"></i>
                                         <p:inputText id="mae" type="text" value="#{pessoaBean.pessoa.mae}"/>
                                         <label jsf:for="mae">Nome da Mãe</label>
                                     </div>
                                 </div>
 
-
                                 <div class="row">
-                                    <div class="input-field col s12">
+                                    <div class="input-field col s12 m6">
+                                        <i class="mdi-action-picture-in-picture prefix"></i>
                                         <p:inputText id="documento" type="text" value="#{pessoaBean.pessoa.documento}"/>
                                         <label jsf:for="documento">Nº Documento</label>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="input-field col s12">
+                                    <div class="input-field col s12 m6">
+                                        <i class="mdi-editor-insert-invitation prefix"></i>
                                         <p:inputText id="nascimento" type="date" value="#{pessoaBean.pessoa.nascimento}"
                                                      styleClass="datepicker"/>
                                         <label jsf:for="nascimento">Nascimento</label>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <button class="btn blue waves-effect waves-light col s12 center" jsf:id="gravar"
-                                                jsf:action="#{pessoaBean.gravarPessoa}">
-                                            Gravar
-                                            <i class="mdi-action-highlight-remove left"/>
-                                        </button>
-
-                                    </div>
-                                </div>
-
-
                             </div>
                         </div>
                     </div>
-                </div>
-            </h:form>
-        </div>
 
+                    <!-- Cadastro das informações de endereço -->
+
+
+                    <div class="col s12 m6 16" jsf:id="painel">
+                        <div class="card-panel">
+                            <h4 class="header">Endereço</h4>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="input-field col s12 m4">
+                                        <i class="mdi-maps-my-location prefix"></i>
+                                        <p:inputMask mask="99999-999" id="cep" type="text"
+                                                     value="#{pessoaBean.endereco.cep}">
+                                            <p:ajax listener="#{pessoaBean.preencherCep}" process="@this"
+                                                    update=":form:logradouro :form:cidade :form:bairro"/>
+                                        </p:inputMask>
+                                        <label jsf:for="cep">Código Postal</label>
+                                    </div>
+                                    <div class="input-field col s12 m2">
+                                        <p:ajaxStatus>
+                                            <f:facet name="start">
+                                                <img src="resources/images/ajax_loader.gif"/>
+                                            </f:facet>
+                                        </p:ajaxStatus>
+                                    </div>
+                                    <div class="input-field col s12 m6">
+                                        <i class="mdi-social-location-city prefix"></i>
+                                        <input jsf:id="cidade" type="text" placeholder="Cidade"
+                                               class="validate"
+                                               jsf:value="#{pessoaBean.endereco.cidade}"/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12 ">
+                                        <i class="mdi-maps-store-mall-directory prefix"></i>
+                                        <p:inputText id="logradouro" styleClass="validate"  type="text"
+                                                     placeholder="Logradouro"
+                                                     value="#{pessoaBean.endereco.logradouro}"/>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12 m9">
+                                        <i class="mdi-communication-business prefix"></i>
+                                        <p:inputText id="bairro" type="text"  placeholder="Bairro"
+                                                     value="#{pessoaBean.endereco.bairro}"/>
+                                    </div>
+
+                                    <div class="input-field col s12 m3">
+                                        <i class="mdi-maps-place prefix"></i>
+                                        <p:inputText id="numero" type="number" placeholder="Nº"
+                                                     value="#{pessoaBean.pessoa.numero}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <button update="@form"  class="btn waves-effect waves-light blue col m3 s12"  style="margin-left: 10px;" jsf:action="#{pessoaBean.gravarPessoa}">
+                        Gravar
+                        <i class="mdi-action-backup right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </h:form>
 
     </ui:define>
 </ui:composition>

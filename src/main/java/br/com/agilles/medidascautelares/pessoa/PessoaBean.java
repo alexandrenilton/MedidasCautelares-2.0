@@ -9,35 +9,39 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jille on 04/11/2016.
  */
 @Named
 @RequestScoped
-public class PessoaBean implements Serializable{
+public class PessoaBean implements Serializable {
+
     @Inject
     private Pessoa pessoa;
     @Inject
     private PessoaDao dao;
-
     @Inject
     private Endereco endereco;
-    
-    public void gravarPessoa(){
-        
-        if(dao.gravarPessoa(pessoa)){
+
+    private List<Pessoa> todasPessoas = new ArrayList<>();
+
+    public void gravarPessoa() {
+        pessoa.setEndereco(endereco);
+        if (dao.gravarPessoa(pessoa)) {
+
             RequestContext contexto = RequestContext.getCurrentInstance();
             contexto.execute("swal('Sucesso!', 'Nova pessoa inserida no sistema!', 'success')");
             this.pessoa = new Pessoa();
+            this.endereco = new Endereco();
 
-        }else {
+        } else {
             RequestContext contexto = RequestContext.getCurrentInstance();
             contexto.execute("swal('Erro!', 'Algo aconteceu errado, tente novamente ou entre em contato com o Administrador do sistema!', 'error')");
         }
     }
-
-
 
     public Pessoa getPessoa() {
         return pessoa;
@@ -55,13 +59,14 @@ public class PessoaBean implements Serializable{
         this.endereco = endereco;
     }
 
-    public Endereco preencherCep(){
-        this.endereco = WebServiceEndereco.getEnderecoPorCep(endereco.getCep());
-        if (endereco !=null){
-            pessoa.setEndereco(endereco);
-        }
+    public Endereco preencherCep() {
+        String cep = endereco.getCep().replace("-", "");
+        this.endereco = WebServiceEndereco.getEnderecoPorCep(cep);
         return this.endereco;
 
     }
-}
 
+    public List<Pessoa> getTodasPessoas() {
+        return dao.listarTodasPessoas();
+    }
+}

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 
 /**
  * Created by jille on 17/10/2016.
@@ -19,7 +20,8 @@ public class Pessoa implements Serializable{
     private Long id;
 
     private String nome;
-    @OneToOne
+    
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Endereco endereco;
 
     private int numero;
