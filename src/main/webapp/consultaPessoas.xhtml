@@ -7,72 +7,85 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui"
       xmlns:pe="http://primefaces.org/ui/extensions">
-    <ui:composition template="template.xhtml">
+<ui:composition template="template.xhtml">
 
-        <ui:define name="breadcumb-title">
-            <h5 class="breadcrumbs-title">Consulta de Pessoas</h5>
+    <ui:define name="breadcumb-title">
+        <h5 class="breadcrumbs-title">Consulta de Pessoas</h5>
 
-        </ui:define>
-        <ui:define name="breadcumb">
-            <a href="#">Consulta de Pessoas</a>
-        </ui:define>
-        <ui:define name="conteudo">
-            <p class="caption">Seção para consultar as pessoas que possuem alguma medida cautelar. Para maiores informações, consulte a seção de Medidas Cautelares!</p>
+    </ui:define>
+    <ui:define name="breadcumb">
+        <a href="#">Consulta de Pessoas</a>
+    </ui:define>
+    <ui:define name="conteudo">
+        <p class="caption">Seção para consultar as pessoas que possuem alguma medida cautelar. Para maiores informações, consulte a seção de Medidas Cautelares!</p>
 
-            <div class="divider"></div>
-            <h:form styleClass="col s12" id="form">
+        <div class="divider"></div>
+        <h:form styleClass="col s12" id="form">
 
-                <div id="basic-form" class="section">
-                    <div class="row">
-                        <!-- Cadastro das informações pessoais -->
-                        <div class="col s12 m12 19">
-                            <h4 class="header">Consulta de Pessoas</h4>
-                            <div class="row">
+            <div id="basic-form" class="section">
+                <div class="row">
+                    <!-- Cadastro das informações pessoais -->
+                    <div class="col s12 m12 19">
+                        <h4 class="header">Consulta de Pessoas</h4>
+                        <div class="row">
 
-                                <table class="responsive-table display" id="data-table-simple" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="id">
-                                                Nome
-                                            </th>
-                                            <th data-field="nome">
-                                                Mãe
-                                            </th>
-                                            <th data-field="mae">
-                                                Documento
-                                            </th>
-                                            <th data-field="documento">
-                                                Nascimento
-                                            </th>
-                                        </tr>
-                                    </thead>
+                            <table class="responsive-table display" id="data-table-simple" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th data-field="id">
+                                        Nome
+                                    </th>
+                                    <th data-field="nome">
+                                        Mãe
+                                    </th>
+                                    <th data-field="mae">
+                                        Documento
+                                    </th>
+                                    <th data-field="documento">
+                                        Nascimento
+                                    </th>
+                                    <th data-field="nascimento">
+                                        Ações
+                                    </th>
+                                </tr>
+                                </thead>
 
-                                    <tbody>
-                                        <ui:repeat value="#{pessoaBean.todasPessoas}" var="pessoa" >
-                                            <tr>
-                                                <td>#{pessoa.nome}</td>
-                                                <td>#{pessoa.mae}</td>
-                                                <td>#{pessoa.documento}</td>
-                                                <td>#{pessoa.nascimento}</td>
-                                            </tr>
+                                <tbody>
+                                <ui:repeat value="#{pessoaBean.todasPessoas}" var="pessoa">
+                                    <tr>
+                                        <td>#{pessoa.nome}</td>
+                                        <td>#{pessoa.mae}</td>
+                                        <td>#{pessoa.documento}</td>
+                                        <td>#{pessoa.nascimento}</td>
+                                        <td>
+                                            <p:commandLink><span class="mdi-content-create"
+                                                                 style="color:deepskyblue"></span> </p:commandLink>
+                                            <p:commandLink><span class="mdi-action-search"
+                                                                 style="color:black; margin-left: 20px"></span>
+                                            </p:commandLink>
+                                            <p:commandLink><span class="mdi-action-delete"
+                                                                 style="color:red; margin-left: 20px"></span>
+                                            </p:commandLink>
+                                        </td>
+                                    </tr>
 
-                                        </ui:repeat>
+                                </ui:repeat>
 
-                                    </tbody>
+                                </tbody>
 
 
-                                </table>
-
-                            </div>
+                            </table>
 
                         </div>
-                    </div>
 
+                    </div>
                 </div>
 
-            </h:form>
+            </div>
 
-        </ui:define>
+        </h:form>
 
-    </ui:composition>
+    </ui:define>
+
+</ui:composition>
 </html>
