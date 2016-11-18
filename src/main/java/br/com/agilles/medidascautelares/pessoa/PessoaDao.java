@@ -1,5 +1,6 @@
 package br.com.agilles.medidascautelares.pessoa;
 
+import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -12,6 +13,7 @@ import java.util.List;
  * Created by jille on 04/11/2016.
  */
 public class PessoaDao {
+
     @Inject
     EntityManager manager;
 
@@ -33,17 +35,37 @@ public class PessoaDao {
     }
 
     public List<Pessoa> listarTodasPessoas() {
-        CriteriaBuilder builder = manager.getCriteriaBuilder();
-        CriteriaQuery<Pessoa> q = builder.createQuery(Pessoa.class);
-        Root<Pessoa> p = q.from(Pessoa.class);
-        q.select(p);
-        q.orderBy(builder.asc(p.get("nome")), builder.desc(p.get("nome")));
-        TypedQuery<Pessoa> query = manager.createQuery(q);
+        List<Pessoa> pessoas = new ArrayList<>();
+        try {
+            CriteriaBuilder builder = manager.getCriteriaBuilder();
+            CriteriaQuery<Pessoa> q = builder.createQuery(Pessoa.class);
+            Root<Pessoa> p = q.from(Pessoa.class);
+            q.select(p);
+            q.orderBy(builder.asc(p.get("nome")), builder.desc(p.get("nome")));
+            TypedQuery<Pessoa> query = manager.createQuery(q);
 
-        List<Pessoa> pessoas = query.getResultList();
+            pessoas = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
 
         return pessoas;
 
     }
-}
 
+    public boolean atualizarPessoa(Pessoa pessoaSelecionada) {
+        boolean atualizado = false;
+        try {
+            manager.getTransaction().begin();
+            manager.merge(pessoaSelecionada);
+            manager.getTransaction().commit();
+            atualizado = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            manager.close();
+        }
+        return atualizado;
+    }
+}

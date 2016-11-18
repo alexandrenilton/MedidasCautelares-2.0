@@ -11,6 +11,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 
 /**
  * Created by jille on 04/11/2016.
@@ -27,6 +28,26 @@ public class PessoaBean implements Serializable {
     private Endereco endereco;
 
     private List<Pessoa> todasPessoas = new ArrayList<>();
+
+    private Pessoa pessoaSelecionada = new Pessoa();
+
+    public Pessoa getPessoaSelecionada() {
+        return pessoaSelecionada;
+    }
+
+    public void setPessoaSelecionada(Pessoa pessoaSelecionada) {
+        this.pessoaSelecionada = pessoaSelecionada;
+    }
+
+    public void atualizarPessoa() {
+        if (dao.atualizarPessoa(pessoaSelecionada)) {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Sucesso!', 'Dados alterados com sucesso!', 'success')");
+        } else {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Erro!', 'Algo aconteceu errado, tente novamente ou entre em contato com o Administrador do sistema!', 'error')");
+        }
+    }
 
     public void gravarPessoa() {
         pessoa.setEndereco(endereco);
@@ -67,6 +88,12 @@ public class PessoaBean implements Serializable {
     }
 
     public List<Pessoa> getTodasPessoas() {
-        return dao.listarTodasPessoas();
+        return todasPessoas;
     }
+
+    
+    public void ListarTodasPessoas(){
+        this.todasPessoas = dao.listarTodasPessoas();
+    }
+
 }

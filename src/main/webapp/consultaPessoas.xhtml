@@ -32,19 +32,20 @@
                             <table class="responsive-table display" id="data-table-simple" cellspacing="0">
                                 <thead>
                                 <tr>
-                                    <th data-field="id">
+
+                                    <th data-field="nome">
                                         Nome
                                     </th>
-                                    <th data-field="nome">
+                                    <th data-field="mae">
                                         Mãe
                                     </th>
-                                    <th data-field="mae">
+                                    <th data-field="documento">
                                         Documento
                                     </th>
-                                    <th data-field="documento">
+                                    <th data-field="nascimento">
                                         Nascimento
                                     </th>
-                                    <th data-field="nascimento">
+                                    <th data-field="acoes">
                                         Ações
                                     </th>
                                 </tr>
@@ -58,16 +59,33 @@
                                         <td>#{pessoa.documento}</td>
                                         <td>#{pessoa.nascimento}</td>
                                         <td>
-                                            <p:commandLink><span class="mdi-content-create"
-                                                                 style="color:deepskyblue"></span> </p:commandLink>
-                                            <p:commandLink><span class="mdi-action-search"
-                                                                 style="color:black; margin-left: 20px"></span>
+                                            <p:commandLink update=":form:formAlteracao"
+                                                           onclick="href='#alteracaoDadosPessoais'" process="@this"
+                                                           styleClass="modal-trigger">
+                                                <span class="mdi-content-create"
+                                                      style="color:deepskyblue"></span>
+                                                <f:setPropertyActionListener value="#{pessoa}"
+                                                                             target="#{pessoaBean.pessoaSelecionada}"/>
+
                                             </p:commandLink>
-                                            <p:commandLink><span class="mdi-action-delete"
-                                                                 style="color:red; margin-left: 20px"></span>
+                                            <p:commandLink styleClass="modal-trigger" update=":form:formConsulta"
+                                                           onclick="href='#dadosPessoaisCompleto'" process="@this"><span
+                                                    class="mdi-action-search"
+                                                    style="color:black; margin-left: 20px"></span>
+                                                <f:setPropertyActionListener value="#{pessoa}"
+                                                                             target="#{pessoaBean.pessoaSelecionada}"/>
+
+                                            </p:commandLink>
+                                            <p:commandLink>
+                                                <span class="mdi-action-delete"
+                                                      style="color:red; margin-left: 20px">
+
+                                                </span>
+
                                             </p:commandLink>
                                         </td>
                                     </tr>
+
 
                                 </ui:repeat>
 
@@ -75,6 +93,137 @@
 
 
                             </table>
+
+                            <div id="dadosPessoaisCompleto" class="modal">
+                                <h:panelGroup id="formConsulta">
+                                    <div class="modal-content  indigo white-text">
+
+                                        <h4 class="header center-align"><strong>#{pessoaBean.pessoaSelecionada.nome}</strong>}</h4>
+                                        <div class="row">
+                                            <p>
+                                                <strong> Mãe - </strong>    #{pessoaBean.pessoaSelecionada.mae}
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            <p>
+                                                <strong>Documento -</strong>      #{pessoaBean.pessoaSelecionada.documento}
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            <p>
+                                                <strong>Nascimento - </strong> #{pessoaBean.pessoaSelecionada.nascimento}
+                                            </p>
+                                        </div>
+                                        <br/>
+                                        <div class="divider"/>
+
+                                        <br/>
+                                        <div class="row">
+                                            <p>
+                                                <strong>Logradouro - </strong>    #{pessoaBean.pessoaSelecionada.endereco.logradouro}
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            <p>
+                                                <strong> Bairro -</strong>     #{pessoaBean.pessoaSelecionada.endereco.bairro}
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            <p>
+                                                <strong> Cidade - </strong>    #{pessoaBean.pessoaSelecionada.endereco.cidade}
+                                            </p>
+                                        </div>
+
+                                    </div>
+
+                                </h:panelGroup>
+                            </div>
+
+                            <div id="alteracaoDadosPessoais" class="modal">
+                                <h:panelGroup id="formAlteracao">
+                                    <div class="modal-content  indigo white-text">
+
+                                        <h4 class="header center-align">EDIÇÃO</h4>
+
+                                        <div id="basic-form2" class="section">
+                                            <div class="row">
+                                                <!-- Cadastro das informações pessoais -->
+                                                <div class="col s12 m12 16">
+                                                    <div class="card-panel">
+                                                        <h4 class="header">Dados Cadastrais</h4>
+                                                        <div class="row">
+
+                                                            <div class="row">
+                                                                <div class="input-field col s12">
+                                                                    <i class="mdi-action-account-circle prefix"></i>
+                                                                    <p:inputText id="id" type="text"
+                                                                                 value="#{pessoaBean.pessoaSelecionada.id}"/>
+                                                                    <label jsf:for="nome" class="active">id</label>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="input-field col s12">
+                                                                    <i class="mdi-action-account-circle prefix"></i>
+                                                                    <p:inputText id="nome" type="text"
+                                                                                 value="#{pessoaBean.pessoaSelecionada.nome}"/>
+                                                                    <label jsf:for="nome" class="active">Nome Completo</label>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="input-field col s12">
+                                                                    <i class="mdi-action-face-unlock prefix"></i>
+                                                                    <p:inputText id="mae" type="text"
+                                                                                 value="#{pessoaBean.pessoaSelecionada.mae}"/>
+                                                                    <label  class="active" jsf:for="mae">Nome da Mãe</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="input-field col s12 m6">
+                                                                    <i class="mdi-action-picture-in-picture prefix"></i>
+                                                                    <p:inputText id="documento" type="text"
+                                                                                 value="#{pessoaBean.pessoaSelecionada.documento}"/>
+                                                                    <label class="active" jsf:for="documento">Nº Documento</label>
+                                                                </div>
+
+                                                                <div class="input-field col s12 m6">
+                                                                    <i class="mdi-editor-insert-invitation prefix"></i>
+                                                                    <p:inputText id="nascimento" type="date"
+                                                                                 value="#{pessoaBean.pessoaSelecionada.nascimento}"
+                                                                                 styleClass="datepicker"/>
+                                                                    <label class="active" jsf:for="nascimento">Nascimento</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <button
+                                                                        class="btn waves-effect waves-light blue col m3 s12"
+                                                                        style="margin-left: 10px;"
+                                                                        jsf:action="#{pessoaBean.atualizarPessoa}">
+                                                                    Atualizar
+                                                                    <i class="mdi-action-backup right"></i>
+
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Cadastro das informações de endereço -->
+
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </h:panelGroup>
+                            </div>
+
 
                         </div>
 
@@ -86,6 +235,7 @@
         </h:form>
 
     </ui:define>
+
 
 </ui:composition>
 </html>
