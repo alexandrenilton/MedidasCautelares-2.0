@@ -77,7 +77,7 @@
                                         <p:inputMask mask="99999-999" id="cep" type="text"
                                                      value="#{pessoaBean.endereco.cep}">
                                             <p:ajax listener="#{pessoaBean.preencherCep}" process="@this"
-                                                    update=":form:logradouro :form:cidade :form:bairro"/>
+                                                    update=":form:logradouro :form:cidade :form:bairro :form:cidadeEscondido :form:logradouroEscondido :form:bairroEscondido"/>
                                         </p:inputMask>
                                         <label jsf:for="cep">Código Postal</label>
                                     </div>
@@ -90,7 +90,8 @@
                                     </div>
                                     <div class="input-field col s12 m6">
                                         <i class="mdi-social-location-city prefix"></i>
-                                        <input jsf:id="cidade" type="text" placeholder="Cidade"
+                                        <h:inputHidden id="cidadeEscondido" value="#{pessoaBean.endereco.cidade}"/>
+                                        <input disabled="true" jsf:id="cidade" type="text" placeholder="Cidade"
                                                class="validate"
                                                jsf:value="#{pessoaBean.endereco.cidade}"/>
                                     </div>
@@ -99,7 +100,9 @@
                                 <div class="row">
                                     <div class="input-field col s12 ">
                                         <i class="mdi-maps-store-mall-directory prefix"></i>
-                                        <p:inputText id="logradouro" styleClass="validate"  type="text"
+                                        <h:inputHidden id="logradouroEscondido"
+                                                       value="#{pessoaBean.endereco.logradouro}"/>
+                                        <p:inputText disabled="true" id="logradouro" styleClass="validate" type="text"
                                                      placeholder="Logradouro"
                                                      value="#{pessoaBean.endereco.logradouro}"/>
                                     </div>
@@ -108,7 +111,8 @@
                                 <div class="row">
                                     <div class="input-field col s12 m9">
                                         <i class="mdi-communication-business prefix"></i>
-                                        <p:inputText id="bairro" type="text"  placeholder="Bairro"
+                                        <h:inputHidden value="#{pessoaBean.endereco.bairro}" id="bairroEscondido"/>
+                                        <p:inputText id="bairro" disabled="true" type="text" placeholder="Bairro"
                                                      value="#{pessoaBean.endereco.bairro}"/>
                                     </div>
 
@@ -123,7 +127,8 @@
                         </div>
 
                     </div>
-                    <button update="@form"  class="btn waves-effect waves-light blue col m3 s12"  style="margin-left: 10px;" jsf:action="#{pessoaBean.gravarPessoa}">
+                    <button update="@form" class="btn waves-effect waves-light blue col m3 s12"
+                            style="margin-left: 10px;" jsf:action="#{pessoaBean.gravarPessoa}">
                         Gravar
                         <i class="mdi-action-backup right"></i>
                     </button>

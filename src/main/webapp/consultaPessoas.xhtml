@@ -98,7 +98,8 @@
                                 <h:panelGroup id="formConsulta">
                                     <div class="modal-content  indigo white-text">
 
-                                        <h4 class="header center-align"><strong>#{pessoaBean.pessoaSelecionada.nome}</strong>}</h4>
+                                        <h4 class="header center-align">
+                                            <strong>#{pessoaBean.pessoaSelecionada.nome}</strong></h4>
                                         <div class="row">
                                             <p>
                                                 <strong> Mãe - </strong>    #{pessoaBean.pessoaSelecionada.mae}
@@ -146,29 +147,21 @@
                                         <h4 class="header center-align">EDIÇÃO</h4>
 
                                         <div id="basic-form2" class="section">
+                                            <h:inputHidden value="#{pessoaBean.pessoaSelecionada.id}"/>
                                             <div class="row">
                                                 <!-- Cadastro das informações pessoais -->
                                                 <div class="col s12 m12 16">
                                                     <div class="card-panel">
-                                                        <h4 class="header">Dados Cadastrais</h4>
+                                                        <h4 class="header black-text">Dados Cadastrais</h4>
                                                         <div class="row">
-
-                                                            <div class="row">
-                                                                <div class="input-field col s12">
-                                                                    <i class="mdi-action-account-circle prefix"></i>
-                                                                    <p:inputText id="id" type="text"
-                                                                                 value="#{pessoaBean.pessoaSelecionada.id}"/>
-                                                                    <label jsf:for="nome" class="active">id</label>
-
-                                                                </div>
-                                                            </div>
 
                                                             <div class="row">
                                                                 <div class="input-field col s12">
                                                                     <i class="mdi-action-account-circle prefix"></i>
                                                                     <p:inputText id="nome" type="text"
                                                                                  value="#{pessoaBean.pessoaSelecionada.nome}"/>
-                                                                    <label jsf:for="nome" class="active">Nome Completo</label>
+                                                                    <label jsf:for="nome"
+                                                                           class="active">Nome Completo</label>
 
                                                                 </div>
                                                             </div>
@@ -178,7 +171,8 @@
                                                                     <i class="mdi-action-face-unlock prefix"></i>
                                                                     <p:inputText id="mae" type="text"
                                                                                  value="#{pessoaBean.pessoaSelecionada.mae}"/>
-                                                                    <label  class="active" jsf:for="mae">Nome da Mãe</label>
+                                                                    <label class="active"
+                                                                           jsf:for="mae">Nome da Mãe</label>
                                                                 </div>
                                                             </div>
 
@@ -187,7 +181,8 @@
                                                                     <i class="mdi-action-picture-in-picture prefix"></i>
                                                                     <p:inputText id="documento" type="text"
                                                                                  value="#{pessoaBean.pessoaSelecionada.documento}"/>
-                                                                    <label class="active" jsf:for="documento">Nº Documento</label>
+                                                                    <label class="active"
+                                                                           jsf:for="documento">Nº Documento</label>
                                                                 </div>
 
                                                                 <div class="input-field col s12 m6">
@@ -195,7 +190,8 @@
                                                                     <p:inputText id="nascimento" type="date"
                                                                                  value="#{pessoaBean.pessoaSelecionada.nascimento}"
                                                                                  styleClass="datepicker"/>
-                                                                    <label class="active" jsf:for="nascimento">Nascimento</label>
+                                                                    <label class="active"
+                                                                           jsf:for="nascimento">Nascimento</label>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
