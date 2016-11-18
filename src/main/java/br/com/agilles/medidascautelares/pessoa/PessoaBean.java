@@ -91,8 +91,8 @@ public class PessoaBean implements Serializable {
         return todasPessoas;
     }
 
-    
-    public void ListarTodasPessoas(){
+   @PostConstruct
+    public void listarTodasPessoas(){
         this.todasPessoas = dao.listarTodasPessoas();
     }
 
