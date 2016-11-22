@@ -4,6 +4,7 @@ import br.com.agilles.medidascautelares.endereco.Endereco;
 import br.com.agilles.medidascautelares.endereco.WebServiceEndereco;
 import org.primefaces.context.RequestContext;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -29,7 +30,8 @@ public class VitimaBean implements Serializable {
 
     /**
      * Getter and Setters
-     **/
+     *
+     */
     public Vitima getVitima() {
         return vitima;
     }
@@ -69,6 +71,7 @@ public class VitimaBean implements Serializable {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
     /**
      * Todos os métodos da classe //**
      */
@@ -96,8 +99,16 @@ public class VitimaBean implements Serializable {
     }
 
     /**
-     * @return Retorna objeto do tipo Endereco
-     * Usado para completar campos de endereço após usuario digitar o cep
+     * Método para preencher o array de todas as vítimas
+     */
+    @PostConstruct
+    public void listarTodasVitimas() {
+        this.todasVitimas = dao.listarTodasVitimas();
+    }
+
+    /**
+     * @return Retorna objeto do tipo Endereco Usado para completar campos de
+     * endereço após usuario digitar o cep
      */
     public Endereco preencherCep() {
         String cep = endereco.getCep().replace("-", "");

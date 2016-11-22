@@ -17,7 +17,7 @@
         <a href="#">Consulta de Pessoas</a>
     </ui:define>
     <ui:define name="conteudo">
-        <p class="caption">Seção para consultar as pessoas que possuem alguma medida cautelar. Para maiores informações, consulte a seção de Medidas Cautelares!</p>
+        <p class="caption">Seção para consultar as vítimas que estão presentes em alguma medida cautelar. Para maiores informações, consulte a seção de Medidas Cautelares!</p>
 
         <div class="divider"></div>
         <h:form styleClass="col s12" id="form">
@@ -26,7 +26,7 @@
                 <div class="row">
                     <!-- Cadastro das informações pessoais -->
                     <div class="col s12 m12 19">
-                        <h4 class="header">Consulta de Pessoas</h4>
+                        <h4 class="header">Consulta de Vítimas</h4>
                         <div class="row">
 
                             <table class="responsive-table display" id="data-table-simple" cellspacing="0">
@@ -52,26 +52,26 @@
                                 </thead>
 
                                 <tbody>
-                                <ui:repeat value="#{pessoaBean.todasPessoas}" var="pessoa">
+                                <ui:repeat value="#{vitimaBean.todasVitimas}" var="vitima">
                                     <tr>
-                                        <td>#{pessoa.nome}</td>
-                                        <td>#{pessoa.mae}</td>
-                                        <td>#{pessoa.documento}</td>
-                                        <td>#{pessoa.nascimento}</td>
+                                        <td>#{vitima.nome}</td>
+                                        <td>#{vitima.mae}</td>
+                                        <td>#{vitima.documento}</td>
+                                        <td>#{vitima.nascimento}</td>
                                         <td>
-                                            <p:commandLink process="@this" action="#{pessoaBean.goEditarPessoa}" >
+                                            <p:commandLink process="@this" action="#{vitimaBean.goEditarVitima}" >
                                                 <span class="mdi-content-create"
                                                       style="color:deepskyblue"></span>
-                                                <f:setPropertyActionListener value="#{pessoa}"
-                                                                             target="#{pessoaBean.pessoaSelecionada}"/>
+                                                <f:setPropertyActionListener value="#{vitima}"
+                                                                             target="#{vitimaBean.vitimaSelecionada}"/>
 
                                             </p:commandLink>
                                             <p:commandLink styleClass="modal-trigger" update=":form:formConsulta"
                                                            onclick="href='#dadosPessoaisCompleto'" process="@this"><span
                                                     class="mdi-action-search"
                                                     style="color:black; margin-left: 20px"></span>
-                                                <f:setPropertyActionListener value="#{pessoa}"
-                                                                             target="#{pessoaBean.pessoaSelecionada}"/>
+                                                <f:setPropertyActionListener value="#{vitima}"
+                                                                             target="#{vitimaBean.vitimaSelecionada}"/>
 
                                             </p:commandLink>
                                             <p:commandLink>
@@ -97,20 +97,20 @@
                                     <div class="modal-content  indigo white-text">
 
                                         <h4 class="header center-align">
-                                            <strong>#{pessoaBean.pessoaSelecionada.nome}</strong></h4>
+                                            <strong>#{vitimaBean.vitimaSelecionada.nome}</strong></h4>
                                         <div class="row">
                                             <p>
-                                                <strong> Mãe - </strong>    #{pessoaBean.pessoaSelecionada.mae}
+                                                <strong> Mãe - </strong>    #{vitimaBean.vitimaSelecionada.mae}
                                             </p>
                                         </div>
                                         <div class="row">
                                             <p>
-                                                <strong>Documento -</strong>      #{pessoaBean.pessoaSelecionada.documento}
+                                                <strong>Documento -</strong>      #{vitimaBean.vitimaSelecionada.documento}
                                             </p>
                                         </div>
                                         <div class="row">
                                             <p>
-                                                <strong>Nascimento - </strong> #{pessoaBean.pessoaSelecionada.nascimento}
+                                                <strong>Nascimento - </strong> #{vitimaBean.vitimaSelecionada.nascimento}
                                             </p>
                                         </div>
                                         <br/>
@@ -119,17 +119,17 @@
                                         <br/>
                                         <div class="row">
                                             <p>
-                                                <strong>Logradouro - </strong>    #{pessoaBean.pessoaSelecionada.endereco.logradouro}
+                                                <strong>Logradouro - </strong>    #{vitimaBean.vitimaSelecionada.endereco.logradouro}
                                             </p>
                                         </div>
                                         <div class="row">
                                             <p>
-                                                <strong> Bairro -</strong>     #{pessoaBean.pessoaSelecionada.endereco.bairro}
+                                                <strong> Bairro -</strong>     #{vitimaBean.vitimaSelecionada.endereco.bairro}
                                             </p>
                                         </div>
                                         <div class="row">
                                             <p>
-                                                <strong> Cidade - </strong>    #{pessoaBean.pessoaSelecionada.endereco.cidade}
+                                                <strong> Cidade - </strong>    #{vitimaBean.vitimaSelecionada.endereco.cidade}
                                             </p>
                                         </div>
 

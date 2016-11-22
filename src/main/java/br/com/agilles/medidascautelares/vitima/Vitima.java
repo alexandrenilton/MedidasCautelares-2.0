@@ -22,6 +22,7 @@ public class Vitima implements Serializable {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Endereco endereco;
     private String documento;
+    private int numero;
 
 
     public Long getId() {
@@ -70,5 +71,13 @@ public class Vitima implements Serializable {
 
     public void setDocumento(String documento) {
         this.documento = documento;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 }
