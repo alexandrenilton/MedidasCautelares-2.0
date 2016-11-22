@@ -26,42 +26,19 @@ public class PessoaBean implements Serializable {
     private PessoaDao dao;
     @Inject
     private Endereco endereco;
-
     private List<Pessoa> todasPessoas = new ArrayList<>();
-
     private Pessoa pessoaSelecionada = new Pessoa();
 
+
+    /**
+     * Getter and Setters
+     **/
     public Pessoa getPessoaSelecionada() {
         return pessoaSelecionada;
     }
 
     public void setPessoaSelecionada(Pessoa pessoaSelecionada) {
         this.pessoaSelecionada = pessoaSelecionada;
-    }
-
-    public void atualizarPessoa() {
-        if (dao.atualizarPessoa(pessoaSelecionada)) {
-            RequestContext contexto = RequestContext.getCurrentInstance();
-            contexto.execute("swal('Sucesso!', 'Dados alterados com sucesso!', 'success')");
-        } else {
-            RequestContext contexto = RequestContext.getCurrentInstance();
-            contexto.execute("swal('Erro!', 'Algo aconteceu errado, tente novamente ou entre em contato com o Administrador do sistema!', 'error')");
-        }
-    }
-
-    public void gravarPessoa() {
-        pessoa.setEndereco(endereco);
-        if (dao.gravarPessoa(pessoa)) {
-
-            RequestContext contexto = RequestContext.getCurrentInstance();
-            contexto.execute("swal('Sucesso!', 'Nova pessoa inserida no sistema!', 'success')");
-            this.pessoa = new Pessoa();
-            this.endereco = new Endereco();
-
-        } else {
-            RequestContext contexto = RequestContext.getCurrentInstance();
-            contexto.execute("swal('Erro!', 'Algo aconteceu errado, tente novamente ou entre em contato com o Administrador do sistema!', 'error')");
-        }
     }
 
     public Pessoa getPessoa() {
@@ -80,6 +57,49 @@ public class PessoaBean implements Serializable {
         this.endereco = endereco;
     }
 
+    public List<Pessoa> getTodasPessoas() {
+        return todasPessoas;
+    }
+
+    @PostConstruct
+    public void listarTodasPessoas() {
+        this.todasPessoas = dao.listarTodasPessoas();
+    }
+
+
+    public String atualizarPessoa() {
+        pessoaSelecionada.setEndereco(endereco);
+        if (dao.atualizarPessoa(pessoaSelecionada)) {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Sucesso!', 'Dados alterados com sucesso!', 'success')");
+        } else {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Erro!', 'Algo aconteceu errado, tente novamente ou entre em contato com o Administrador do sistema!', 'error')");
+        }
+        return "consultaPessoas";
+    }
+
+    public String goEditarPessoa() {
+        return "edicaoPessoas";
+    }
+
+    public void gravarPessoa() {
+        pessoa.setEndereco(endereco);
+        if (dao.gravarPessoa(pessoa)) {
+
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Sucesso!', 'Nova pessoa inserida no sistema!', 'success')");
+            this.pessoa = new Pessoa();
+            this.endereco = new Endereco();
+
+        } else {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Erro!', 'Algo aconteceu errado, tente novamente ou entre em contato com o Administrador do sistema!', 'error')");
+        }
+        pessoa = new Pessoa();
+        endereco = new Endereco();
+    }
+
     public Endereco preencherCep() {
         String cep = endereco.getCep().replace("-", "");
         this.endereco = WebServiceEndereco.getEnderecoPorCep(cep);
@@ -87,13 +107,5 @@ public class PessoaBean implements Serializable {
 
     }
 
-    public List<Pessoa> getTodasPessoas() {
-        return todasPessoas;
-    }
-
-   @PostConstruct
-    public void listarTodasPessoas(){
-        this.todasPessoas = dao.listarTodasPessoas();
-    }
 
 }
