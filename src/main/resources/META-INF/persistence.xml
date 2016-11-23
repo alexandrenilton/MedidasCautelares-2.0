@@ -7,6 +7,7 @@
         <class>br.com.agilles.medidascautelares.pessoa.Pessoa</class>
         <class>br.com.agilles.medidascautelares.usuario.Usuario</class>
         <class>br.com.agilles.medidascautelares.vitima.Vitima</class>
+        <class>br.com.agilles.medidascautelares.tipoMedida.TipoMedida</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

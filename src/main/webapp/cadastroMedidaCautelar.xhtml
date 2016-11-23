@@ -10,14 +10,14 @@
 <ui:composition template="template.xhtml">
 
     <ui:define name="breadcumb-title">
-        <h5 class="breadcrumbs-title">Edição de Pessoas</h5>
+        <h5 class="breadcrumbs-title">Cadastro de Pessoas</h5>
 
     </ui:define>
     <ui:define name="breadcumb">
-        <a href="#">Edição de Pessoas</a>
+        <a href="#">Cadastro de Pessoas</a>
     </ui:define>
     <ui:define name="conteudo">
-        <p class="caption">Alteração das informações de uma pessoa previamente cadastrada no sistema</p>
+        <p class="caption">Pessoa a que se refere a Medida Cautelar! - Necessário para inserção da pessoa no cadastro de Medida Cautelar.</p>
 
         <div class="divider"></div>
         <h:form styleClass="col s12" id="form">
@@ -30,10 +30,9 @@
                             <h4 class="header">Dados Cadastrais</h4>
                             <div class="row">
                                 <div class="row">
-                                    <h:inputHidden value="#{vitimaBean.vitimaSelecionada.id}" />
                                     <div class="input-field col s12">
                                         <i class="mdi-action-account-circle prefix"></i>
-                                        <p:inputText id="nome" type="text" value="#{vitimaBean.vitimaSelecionada.nome}"/>
+                                        <p:inputText id="nome" type="text" value="#{pessoaBean.pessoa.nome}"/>
                                         <label jsf:for="nome">Nome Completo</label>
 
                                     </div>
@@ -42,7 +41,7 @@
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="mdi-action-face-unlock prefix"></i>
-                                        <p:inputText id="mae" type="text" value="#{vitimaBean.vitimaSelecionada.mae}"/>
+                                        <p:inputText id="mae" type="text" value="#{pessoaBean.pessoa.mae}"/>
                                         <label jsf:for="mae">Nome da Mãe</label>
                                     </div>
                                 </div>
@@ -50,15 +49,15 @@
                                 <div class="row">
                                     <div class="input-field col s12 m6">
                                         <i class="mdi-action-picture-in-picture prefix"></i>
-                                        <p:inputText id="documento" type="text" value="#{vitimaBean.vitimaSelecionada.documento}"/>
+                                        <p:inputText id="documento" type="text" value="#{pessoaBean.pessoa.documento}"/>
                                         <label jsf:for="documento">Nº Documento</label>
                                     </div>
 
                                     <div class="input-field col s12 m6">
                                         <i class="mdi-editor-insert-invitation prefix"></i>
-                                        <p:inputText id="nascimento" type="date" value="#{vitimaBean.vitimaSelecionada.nascimento}"
+                                        <p:inputText id="nascimento" type="date" value="#{pessoaBean.pessoa.nascimento}"
                                                      styleClass="datepicker"/>
-                                        <label jsf:for="nascimento">Nascimento</label>
+                                        <label jsf:for="nascimento">Nascimzento</label>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +67,7 @@
                     <!-- Cadastro das informações de endereço -->
 
 
-                    <div class="col s12 m6 16" jsf:id="painel">
+                    <div class="col s12 m12 16" jsf:id="painel">
                         <div class="card-panel">
                             <h4 class="header">Endereço</h4>
                             <div class="row">
@@ -76,8 +75,8 @@
                                     <div class="input-field col s12 m4">
                                         <i class="mdi-maps-my-location prefix"></i>
                                         <p:inputMask mask="99999-999" id="cep" 
-                                                     value="#{vitimaBean.endereco.cep}">
-                                            <p:ajax listener="#{vitimaBean.preencherCep}" process="@this"
+                                                     value="#{pessoaBean.endereco.cep}">
+                                            <p:ajax listener="#{pessoaBean.preencherCep}" process="@this"
                                                     update=":form:logradouro :form:cidade :form:bairro :form:cidadeEscondido :form:logradouroEscondido :form:bairroEscondido"/>
                                         </p:inputMask>
                                         <label jsf:for="cep">Código Postal</label>
@@ -91,10 +90,10 @@
                                     </div>
                                     <div class="input-field col s12 m6">
                                         <i class="mdi-social-location-city prefix"></i>
-                                        <h:inputHidden id="cidadeEscondido" value="#{vitimaBean.endereco.cidade}"/>
+                                        <h:inputHidden id="cidadeEscondido" value="#{pessoaBean.endereco.cidade}"/>
                                         <input disabled="true" jsf:id="cidade" type="text" placeholder="Cidade"
                                                class="validate"
-                                               jsf:value="#{vitimaBean.endereco.cidade}"/>
+                                               jsf:value="#{pessoaBean.endereco.cidade}"/>
                                     </div>
                                 </div>
 
@@ -102,26 +101,25 @@
                                     <div class="input-field col s12 ">
                                         <i class="mdi-maps-store-mall-directory prefix"></i>
                                         <h:inputHidden id="logradouroEscondido"
-                                                       value="#{vitimaBean.endereco.logradouro}"/>
+                                                       value="#{pessoaBean.endereco.logradouro}"/>
                                         <p:inputText disabled="true" id="logradouro" styleClass="validate" type="text"
                                                      placeholder="Logradouro"
-                                                     value="#{vitimaBean.endereco.logradouro}"/>
+                                                     value="#{pessoaBean.endereco.logradouro}"/>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="input-field col s12 m9">
                                         <i class="mdi-communication-business prefix"></i>
-                                        <h:inputHidden value="#{vitimaBean.endereco.bairro}" id="bairroEscondido"/>
+                                        <h:inputHidden value="#{pessoaBean.endereco.bairro}" id="bairroEscondido"/>
                                         <p:inputText id="bairro" disabled="true" type="text" placeholder="Bairro"
-                                                     value="#{vitimaBean.endereco.bairro}"/>
+                                                     value="#{pessoaBean.endereco.bairro}"/>
                                     </div>
 
                                     <div class="input-field col s12 m3">
-                                        
                                         <i class="mdi-maps-place prefix"></i>
                                         <p:inputText id="numero" type="number" placeholder="Nº"
-                                                     value="#{vitimaBean.vitimaSelecionada.numero}"/>
+                                                     value="#{pessoaBean.pessoa.numero}"/>
                                     </div>
                                 </div>
                             </div>
@@ -130,9 +128,9 @@
 
                     </div>
                     <button update="@form" class="btn waves-effect waves-light blue col m3 s12"
-                            style="margin-left: 10px;" jsf:action="#{vitimaBean.atualizarVitima}">
-                        Atualizar
-                        <i class="mdi-notification-sync right"></i>
+                            style="margin-left: 10px;" jsf:action="#{pessoaBean.gravarPessoa}">
+                        Gravar
+                        <i class="mdi-action-backup right"></i>
                     </button>
                 </div>
             </div>

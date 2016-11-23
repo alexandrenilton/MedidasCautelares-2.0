@@ -25,7 +25,7 @@ public class VitimaBean implements Serializable {
     private VitimaDao dao;
     @Inject
     private Endereco endereco;
-    private Vitima vitimaSelecionada;
+    private Vitima vitimaSelecionada = new Vitima();
     private List<Vitima> todasVitimas = new ArrayList<>();
 
     /**
@@ -115,5 +115,17 @@ public class VitimaBean implements Serializable {
         this.endereco = WebServiceEndereco.getEnderecoPorCep(cep);
         return this.endereco;
 
+    }
+
+    public String atualizarVitima(){
+        vitimaSelecionada.setEndereco(endereco);
+        if (dao.atualizarVitima(vitimaSelecionada)) {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Sucesso!', 'Dados alterados com sucesso!', 'success')");
+        } else {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Erro!', 'Algo aconteceu errado, contate o administrador', 'error')");
+        }
+        return "consultaVitimas";
     }
 }
