@@ -13,23 +13,19 @@ import java.io.Serializable;
  */
 
 public enum TipoMedida {
-    COMPARECIMENTO_MENSAL, PROIBICAO_AUSENTAR, PROIBICAO_CONTATO, RECOLHIMENTO_DOMICILIAR;
+    COMPARECIMENTO_MENSAL("Comparecimento Mensal em Juízo e na Central de Egressos"),
+    PROIBICAO_AUSENTAR("Proibição de ausentar-se da comarca sem autorização"),
+    PROIBICAO_CONTATO("Proibido contato com a vítima ou familiares"),
+    RECOLHIMENTO_DOMICILIAR("Recolhimento domiciliar, inclusive aos sábados, domingos e feriados, após as 23:00h");
 
-    public String getDescricao() {
-        switch (this) {
-            case COMPARECIMENTO_MENSAL:
-                return "Comparecimento Mensal em Juízo e na Central de Egressos";
-            case PROIBICAO_AUSENTAR:
-                return "Proibição de ausentar-se da comarca sem devida autorização";
-            case PROIBICAO_CONTATO:
-                return "Proibição contato com a vítima ou familiares";
-            case RECOLHIMENTO_DOMICILIAR:
-                return "Recolhimento domiciliar, inclusive aos sábados, domingos e feriados, a partir das 23:00h";
-            default:
-                return "";
-        }
+    private final  String descricao;
+
+    TipoMedida(final String descricao) {
+        this.descricao = descricao;
     }
 
-
+    public String getDescricao() {
+        return descricao;
+    }
 }
 
