@@ -10,117 +10,90 @@
 <ui:composition template="template.xhtml">
 
     <ui:define name="breadcumb-title">
-        <h5 class="breadcrumbs-title">Cadastro de Pessoas</h5>
+        <h5 class="breadcrumbs-title">Medidas Cautelares</h5>
 
     </ui:define>
     <ui:define name="breadcumb">
-        <a href="#">Cadastro de Pessoas</a>
+        <a href="#">Cadastro de Medidas</a>
     </ui:define>
     <ui:define name="conteudo">
-        <p class="caption">Pessoa a que se refere a Medida Cautelar! - Necessário para inserção da pessoa no cadastro de Medida Cautelar.</p>
+        <p class="caption">Cadastro de Medida Cautelar!</p>
 
         <div class="divider"></div>
         <h:form styleClass="col s12" id="form">
 
             <div id="basic-form" class="section">
                 <div class="row">
-                    <!-- Cadastro das informações pessoais -->
-                    <div class="col s12 m6 16">
+                    <!-- Cadastro das informações do Processo -->
+                    <div class="col s12 m4 16">
                         <div class="card-panel">
-                            <h4 class="header">Dados Cadastrais</h4>
+                            <h4 class="header">Informações do Processo</h4>
                             <div class="row">
                                 <div class="row">
-                                    <div class="input-field col s12">
+                                    <div class="input-field col s12 m12">
                                         <i class="mdi-action-account-circle prefix"></i>
-                                        <p:inputText id="nome" type="text" value="#{pessoaBean.pessoa.nome}"/>
-                                        <label jsf:for="nome">Nome Completo</label>
+                                        <p:inputText id="processo" type="text"
+                                                     value="#{medidaCautelarBean.medidaCautelar.processo}"/>
+                                        <label jsf:for="processo">Processo</label>
 
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="input-field col s12">
+                                    <div class="input-field col m12 s12">
                                         <i class="mdi-action-face-unlock prefix"></i>
-                                        <p:inputText id="mae" type="text" value="#{pessoaBean.pessoa.mae}"/>
-                                        <label jsf:for="mae">Nome da Mãe</label>
+                                        <p:inputText id="mae" type="text"
+                                                     value="#{medidaCautelarBean.medidaCautelar.local}"/>
+                                        <label jsf:for="mae">Local</label>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="input-field col s12 m6">
-                                        <i class="mdi-action-picture-in-picture prefix"></i>
-                                        <p:inputText id="documento" type="text" value="#{pessoaBean.pessoa.documento}"/>
-                                        <label jsf:for="documento">Nº Documento</label>
-                                    </div>
+                                <div class="row" style="margin-left: 10px; margin-top: 10px;">
+                                    <input name="group1" class="with-gap" type="radio" id="comVitima"/>
+                                    <label for="comVitima">Com Vítima</label>
 
-                                    <div class="input-field col s12 m6">
-                                        <i class="mdi-editor-insert-invitation prefix"></i>
-                                        <p:inputText id="nascimento" type="date" value="#{pessoaBean.pessoa.nascimento}"
-                                                     styleClass="datepicker"/>
-                                        <label jsf:for="nascimento">Nascimzento</label>
-                                    </div>
+                                    <input name="group1" class="with-gap" checked="true" type="radio" id="semVitima"/>
+                                    <label for="semVitima">Sem Vítima</label>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
 
-                    <!-- Cadastro das informações de endereço -->
+                    <!-- Cadastro das Medidas Cautelares -->
 
 
-                    <div class="col s12 m12 16" jsf:id="painel">
+                    <div class="col s12 m8 16" jsf:id="painel">
                         <div class="card-panel">
-                            <h4 class="header">Endereço</h4>
+                            <h4 class="header">Medidas Cautelares</h4>
                             <div class="row">
                                 <div class="row">
+                                    <div class="input-field col s12 m12 " >
+                                        <h:selectManyCheckbox value="#{medidaCautelarBean.medidaCautelar.tipoMedida}"
+                                                              layout="pageDirection">
+                                            <f:selectItems value="#{medidaCautelarBean.tipoMedidas}" itemValue="#{tipo}"
+                                                           var="tipo" itemLabel="#{tipo.descricao}"/>
+                                        </h:selectManyCheckbox>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
                                     <div class="input-field col s12 m4">
-                                        <i class="mdi-maps-my-location prefix"></i>
-                                        <p:inputMask mask="99999-999" id="cep" 
-                                                     value="#{pessoaBean.endereco.cep}">
-                                            <p:ajax listener="#{pessoaBean.preencherCep}" process="@this"
-                                                    update=":form:logradouro :form:cidade :form:bairro :form:cidadeEscondido :form:logradouroEscondido :form:bairroEscondido"/>
-                                        </p:inputMask>
-                                        <label jsf:for="cep">Código Postal</label>
+
                                     </div>
-                                    <div class="input-field col s12 m2">
-                                        <p:ajaxStatus>
-                                            <f:facet name="start">
-                                                <img src="resources/images/ajax_loader.gif"/>
-                                            </f:facet>
-                                        </p:ajaxStatus>
-                                    </div>
-                                    <div class="input-field col s12 m6">
-                                        <i class="mdi-social-location-city prefix"></i>
-                                        <h:inputHidden id="cidadeEscondido" value="#{pessoaBean.endereco.cidade}"/>
-                                        <input disabled="true" jsf:id="cidade" type="text" placeholder="Cidade"
-                                               class="validate"
-                                               jsf:value="#{pessoaBean.endereco.cidade}"/>
-                                    </div>
+
+
                                 </div>
-
                                 <div class="row">
-                                    <div class="input-field col s12 ">
-                                        <i class="mdi-maps-store-mall-directory prefix"></i>
-                                        <h:inputHidden id="logradouroEscondido"
-                                                       value="#{pessoaBean.endereco.logradouro}"/>
-                                        <p:inputText disabled="true" id="logradouro" styleClass="validate" type="text"
-                                                     placeholder="Logradouro"
-                                                     value="#{pessoaBean.endereco.logradouro}"/>
-                                    </div>
-                                </div>
+                                    <div class="input-field col s12 m4">
 
-                                <div class="row">
-                                    <div class="input-field col s12 m9">
-                                        <i class="mdi-communication-business prefix"></i>
-                                        <h:inputHidden value="#{pessoaBean.endereco.bairro}" id="bairroEscondido"/>
-                                        <p:inputText id="bairro" disabled="true" type="text" placeholder="Bairro"
-                                                     value="#{pessoaBean.endereco.bairro}"/>
                                     </div>
 
-                                    <div class="input-field col s12 m3">
-                                        <i class="mdi-maps-place prefix"></i>
-                                        <p:inputText id="numero" type="number" placeholder="Nº"
-                                                     value="#{pessoaBean.pessoa.numero}"/>
-                                    </div>
+
                                 </div>
                             </div>
 
