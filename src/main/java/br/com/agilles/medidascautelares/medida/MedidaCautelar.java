@@ -24,7 +24,6 @@ public class MedidaCautelar implements Serializable {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Vitima vitima;
 
-
     @Enumerated(EnumType.STRING)
     private TipoMedida tipoMedida;
 
