@@ -1,6 +1,7 @@
 package br.com.agilles.medidascautelares.medida;
 
 import br.com.agilles.medidascautelares.tipoMedida.TipoMedida;
+import org.primefaces.context.RequestContext;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -68,7 +69,9 @@ public class MedidaCautelarBean implements Serializable {
 
     public void gravarMedida() {
         if (dao.gravarMedida(medidaCautelar)) {
-            System.out.println("Gravado");
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Sucesso!', 'Nova Medida Cautelar inserida no sistema!', 'success')");
+            this.medidaCautelar = new MedidaCautelar();
         }
     }
 
