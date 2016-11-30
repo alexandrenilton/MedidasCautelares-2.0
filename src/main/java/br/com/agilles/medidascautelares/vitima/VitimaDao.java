@@ -73,4 +73,9 @@ public class VitimaDao {
         }
         return atualizado;
     }
+
+    public Vitima buscarPorId(Long id) {
+        Vitima vitima = manager.find(Vitima.class, id);
+        return vitima;
+    }
 }

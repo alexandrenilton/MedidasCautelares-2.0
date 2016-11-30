@@ -24,8 +24,9 @@ public class MedidaCautelar implements Serializable {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Vitima vitima;
 
+    @ElementCollection(targetClass = TipoMedida.class)
     @Enumerated(EnumType.STRING)
-    private TipoMedida tipoMedida;
+    private List<TipoMedida> tipoMedida;
 
     public Long getId() {
         return id;
@@ -67,11 +68,11 @@ public class MedidaCautelar implements Serializable {
         this.vitima = vitima;
     }
 
-    public TipoMedida getTipoMedida() {
+    public List<TipoMedida> getTipoMedida() {
         return tipoMedida;
     }
 
-    public void setTipoMedida(TipoMedida tipoMedida) {
+    public void setTipoMedida(List<TipoMedida> tipoMedida) {
         this.tipoMedida = tipoMedida;
     }
 }

@@ -2,6 +2,7 @@ package br.com.agilles.medidascautelares.vitima;
 
 import br.com.agilles.medidascautelares.endereco.Endereco;
 import br.com.agilles.medidascautelares.endereco.WebServiceEndereco;
+import br.com.agilles.medidascautelares.pessoa.Pessoa;
 import org.primefaces.context.RequestContext;
 
 import javax.annotation.PostConstruct;
@@ -127,5 +128,19 @@ public class VitimaBean implements Serializable {
             contexto.execute("swal('Erro!', 'Algo aconteceu errado, contate o administrador', 'error')");
         }
         return "consultaVitimas";
+    }
+
+
+    public List<Vitima> completarVitimas(String query){
+        List<Vitima> vitimas = new ArrayList<>();
+        vitimas = dao.listarTodasVitimas();
+        List<Vitima> sugestoes = new ArrayList<>();
+        for (Vitima v: vitimas) {
+            String nome = v.getNome();
+            if (nome.contains(query)) {
+                sugestoes.add(v);
+            }
+        }
+        return sugestoes;
     }
 }

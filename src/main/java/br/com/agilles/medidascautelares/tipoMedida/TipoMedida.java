@@ -1,6 +1,8 @@
 package br.com.agilles.medidascautelares.tipoMedida;
 
 
+import javax.persistence.Transient;
+
 /**
  * Created by jille on 23/11/2016.
  */
@@ -10,6 +12,7 @@ public enum TipoMedida {
     PROIBICAO_AUSENTAR("Proibição de ausentar-se da comarca sem autorização"),
     PROIBICAO_CONTATO("Proibido contato com a vítima ou familiares"),
     RECOLHIMENTO_DOMICILIAR("Recolhimento domiciliar, inclusive aos sábados, domingos e feriados, após as 23:00h");
+
 
     private String descricao;
 
