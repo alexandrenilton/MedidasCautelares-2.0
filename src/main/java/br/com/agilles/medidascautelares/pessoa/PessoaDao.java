@@ -68,4 +68,9 @@ public class PessoaDao {
         }
         return atualizado;
     }
+
+    public Pessoa buscarPorId(Long id) {
+        Pessoa pessoa = manager.find(Pessoa.class, id);
+        return pessoa;
+    }
 }

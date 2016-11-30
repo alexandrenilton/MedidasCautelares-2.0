@@ -107,5 +107,17 @@ public class PessoaBean implements Serializable {
 
     }
 
+    public List<Pessoa> completarPessoas(String query){
+        List<Pessoa> pessoas = new ArrayList<>();
+        pessoas = dao.listarTodasPessoas();
+        List<Pessoa> sugestoes = new ArrayList<>();
+        for(Pessoa p : pessoas){
+            String nome = p.getNome();
+            if (nome.contains(query)) {
+                sugestoes.add(p);
+            }
+        }
+        return sugestoes;
+    }
 
 }

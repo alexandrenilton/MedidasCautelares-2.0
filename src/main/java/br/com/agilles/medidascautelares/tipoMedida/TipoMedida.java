@@ -14,10 +14,8 @@ public enum TipoMedida {
     private String descricao;
 
     TipoMedida(String descricao) {
-
         this.descricao = descricao;
     }
-
     public String getDescricao() {
         return descricao;
     }

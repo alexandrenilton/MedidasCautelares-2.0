@@ -9203,8 +9203,8 @@ textarea.materialize-textarea {
 
 [type="radio"]:checked + label:after {
   border-radius: 50%;
-  border: 2px solid #ff4081;
-  background-color: #ff4081;
+  border: 2px solid #3028ff;
+  background-color: #0f13ff;
   z-index: 0;
   -webkit-transform: scale(1.02);
   -moz-transform: scale(1.02);
@@ -9216,13 +9216,13 @@ textarea.materialize-textarea {
 /* Radio With gap */
 [type="radio"].with-gap:checked + label:before {
   border-radius: 50%;
-  border: 2px solid #ff4081;
+  border: 2px solid #000bff;
 }
 
 [type="radio"].with-gap:checked + label:after {
   border-radius: 50%;
-  border: 2px solid #ff4081;
-  background-color: #ff4081;
+  border: 2px solid #000bff;
+  background-color: #000bff;
   z-index: 0;
   -webkit-transform: scale(0.5);
   -moz-transform: scale(0.5);

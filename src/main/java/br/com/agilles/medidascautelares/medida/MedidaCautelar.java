@@ -75,6 +75,4 @@ public class MedidaCautelar implements Serializable {
     public void setTipoMedida(TipoMedida tipoMedida) {
         this.tipoMedida = tipoMedida;
     }
-
-
 }

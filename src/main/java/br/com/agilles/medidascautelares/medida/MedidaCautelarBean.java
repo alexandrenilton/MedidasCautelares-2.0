@@ -25,6 +25,8 @@ public class MedidaCautelarBean implements Serializable {
 
     private TipoMedida[] tipoMedidas;
 
+    private boolean possuiVitima = false;
+
     /**
      * Getters and setters
      */
@@ -56,12 +58,28 @@ public class MedidaCautelarBean implements Serializable {
         this.medidaSelecionada = medidaSelecionada;
     }
 
+    public void setPossuiVitima(boolean possuiVitima) {
+        this.possuiVitima = possuiVitima;
+    }
+
+    public boolean isPossuiVitima() {
+        return possuiVitima;
+    }
 
     public void gravarMedida() {
+        if (dao.gravarMedida(medidaCautelar)) {
+
+        }
     }
 
     public void atualizarMedida() {
 
+
+
+
     }
+
+    
+
 
 }
