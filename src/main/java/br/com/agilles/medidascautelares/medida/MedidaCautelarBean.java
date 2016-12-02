@@ -3,6 +3,7 @@ package br.com.agilles.medidascautelares.medida;
 import br.com.agilles.medidascautelares.tipoMedida.TipoMedida;
 import org.primefaces.context.RequestContext;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,6 +29,8 @@ public class MedidaCautelarBean implements Serializable {
 
     private boolean possuiVitima = true;
 
+    private List<MedidaCautelar> todasMedidas = new ArrayList<>();
+
     /**
      * Getters and setters
      */
@@ -41,6 +44,18 @@ public class MedidaCautelarBean implements Serializable {
 
     public void setMedidaCautelar(MedidaCautelar medidaCautelar) {
         this.medidaCautelar = medidaCautelar;
+    }
+
+    public List<MedidaCautelar> getTodasMedidas() {
+        return todasMedidas;
+    }
+
+    public void setTipoMedidas(TipoMedida[] tipoMedidas) {
+        this.tipoMedidas = tipoMedidas;
+    }
+
+    public void setTodasMedidas(List<MedidaCautelar> todasMedidas) {
+        this.todasMedidas = todasMedidas;
     }
 
     public MedidaCautelarDao getDao() {
@@ -67,11 +82,25 @@ public class MedidaCautelarBean implements Serializable {
         return possuiVitima;
     }
 
+
+
+    @PostConstruct
+    public void listarTodasMedidas() {
+        this.todasMedidas = dao.listarTodasMedidas();
+    }
+
+
+    /**
+     * Método que insere uma nova medida no sistema
+     */
     public void gravarMedida() {
         if (dao.gravarMedida(medidaCautelar)) {
             RequestContext contexto = RequestContext.getCurrentInstance();
             contexto.execute("swal('Sucesso!', 'Nova Medida Cautelar inserida no sistema!', 'success')");
             this.medidaCautelar = new MedidaCautelar();
+        } else {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Erro!', 'Alguma coisa deu errado! Contate o administrador do sistema', 'error')");
         }
     }
 

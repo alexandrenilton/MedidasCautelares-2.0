@@ -19,6 +19,7 @@ public class Pessoa implements Serializable{
     @GeneratedValue
     private Long id;
 
+
     private String nome;
     
     @OneToOne(cascade = CascadeType.PERSIST)

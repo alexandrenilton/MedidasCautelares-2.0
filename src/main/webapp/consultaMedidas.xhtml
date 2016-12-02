@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+<ui:composition template="template.xhtml">
+
+    <ui:define name="breadcumb-title">
+        <h5 class="breadcrumbs-title">Consulta de Medidas Cautelares</h5>
+
+    </ui:define>
+    <ui:define name="breadcumb">
+        <a href="#">Consulta de Medidas Cautelares</a>
+    </ui:define>
+    <ui:define name="conteudo">
+        <p class="caption">Consulta de todas as medidas cautelares do sistema.</p>
+
+        <div class="divider"></div>
+        <h:form styleClass="col s12" id="form">
+
+            <div id="basic-form" class="section">
+                <div class="row">
+                    <!-- Cadastro das informações pessoais -->
+                    <div class="col s12 m12 19">
+                        <h4 class="header">Consulta de Medidas Cautelares</h4>
+                        <div class="row">
+
+                            <table class="responsive-table display" id="data-table-simple" cellspacing="0">
+                                <thead>
+                                <tr>
+
+                                    <th data-field="processo">
+                                        Processo
+                                    </th>
+                                    <th data-field="pessoa">
+                                        Pessoa
+                                    </th>
+                                    <th data-field="cidade">
+                                        Cidade
+                                    </th>
+                                    <th data-field="bairro">
+                                        Bairro
+                                    </th>
+                                    <th data-field="acoes">
+                                        Ações
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <ui:repeat value="#{medidaCautelarBean.todasMedidas}" var="medida">
+                                    <tr>
+                                        <td>#{medida.processo}</td>
+                                        <td>#{medida.pessoa.nome}</td>
+                                        <td>#{medida.pessoa.endereco.cidade}</td>
+                                        <td>#{medida.pessoa.endereco.bairro}</td>
+                                        <td>
+                                            <p:commandLink process="@this" action="#{pessoaBean.goEditarPessoa}">
+                                                <span class="mdi-content-create"
+                                                      style="color:deepskyblue"></span>
+                                                <f:setPropertyActionListener value="#{medida}"
+                                                                             target="#{medidaCautelarBean.medidaSelecionada}"/>
+
+                                            </p:commandLink>
+                                            <p:commandLink styleClass="modal-trigger" update=":form:formConsulta"
+                                                           onclick="href='#medidasCautelaresCompleto'"
+                                                           process="@this"><span
+                                                    class="mdi-action-search"
+                                                    style="color:black; margin-left: 20px"></span>
+                                                <f:setPropertyActionListener value="#{medida}"
+                                                                             target="#{medidaCautelarBean.medidaSelecionada}"/>
+
+                                            </p:commandLink>
+                                            <p:commandLink>
+                                                <span class="mdi-action-delete"
+                                                      style="color:red; margin-left: 20px">
+
+                                                </span>
+
+                                            </p:commandLink>
+                                        </td>
+                                    </tr>
+
+
+                                </ui:repeat>
+
+                                </tbody>
+
+
+                            </table>
+
+                            <div id="medidasCautelaresCompleto" class="modal">
+                                <h:panelGroup id="formConsulta">
+                                    <div class="modal-content  indigo white-text">
+
+                                        <h4 class="header center-align">
+                                            <strong>Processo - #{medidaCautelarBean.medidaSelecionada.processo}</strong>
+                                        </h4>
+                                        <div class="row">
+                                            <p>
+                                                <strong> Nome - </strong>    #{medidaCautelarBean.medidaSelecionada.pessoa.nome}
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            <p>
+                                                <strong>Documento -</strong>      #{medidaCautelarBean.medidaSelecionada.pessoa.documento}
+                                            </p>
+                                        </div>
+                                        <div class="row">
+                                            <p>
+                                                <strong>Nascimento - </strong> #{medidaCautelarBean.medidaSelecionada.pessoa.nascimento}
+                                            </p>
+                                        </div>
+                                        <br/>
+                                        <div class="divider"/>
+
+
+                                        <div class="row">
+                                            <p class="header center-align">
+                                                <strong>Medidas Cautelares </strong>
+                                            </p>
+                                        </div>
+                                        <ui:repeat value="#{medidaCautelarBean.medidaSelecionada.tipoMedida}"
+                                                   var="listaMedidas">
+
+                                                <ul style="list-style-type: disc">
+                                                    <li style="list-style-type: disc" >
+                                                        <p>
+                                                            <h:outputText value="#{listaMedidas.descricao}."/>
+                                                        </p>
+                                                    </li>
+                                                </ul>
+
+
+
+                                        </ui:repeat>
+
+                                    </div>
+
+                                </h:panelGroup>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </h:form>
+
+    </ui:define>
+
+
+</ui:composition>
+</html>
