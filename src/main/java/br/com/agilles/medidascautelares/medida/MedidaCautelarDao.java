@@ -16,8 +16,9 @@ public class MedidaCautelarDao {
 
     @Inject
     EntityManager manager;
+
     public boolean gravarMedida(MedidaCautelar medidaCautelar) {
-       boolean gravado = false;
+        boolean gravado = false;
         try {
             manager.getTransaction().begin();
             manager.persist(medidaCautelar);
@@ -25,7 +26,7 @@ public class MedidaCautelarDao {
             gravado = true;
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             manager.close();
 
         }
@@ -43,10 +44,29 @@ public class MedidaCautelarDao {
             medidas = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
 
         }
         return medidas;
 
     }
+
+    public List<MedidaCautelar> listarMedidasParaPaginaInicial() {
+        List<MedidaCautelar> medidas = new ArrayList<>();
+        try {
+            CriteriaBuilder builder = manager.getCriteriaBuilder();
+            CriteriaQuery<MedidaCautelar> q = builder.createQuery(MedidaCautelar.class);
+            Root<MedidaCautelar> m = q.from(MedidaCautelar.class);
+            q.select(m);
+            q.orderBy(builder.desc(m.get("id")), builder.asc(m.get("id")));
+            TypedQuery<MedidaCautelar> query = manager.createQuery(q);
+            medidas = query.setMaxResults(4).getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return medidas;
+
+    }
+
+
 }

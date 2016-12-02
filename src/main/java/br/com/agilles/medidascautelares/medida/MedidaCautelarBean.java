@@ -31,6 +31,9 @@ public class MedidaCautelarBean implements Serializable {
 
     private List<MedidaCautelar> todasMedidas = new ArrayList<>();
 
+    private List<MedidaCautelar> ultimasMedidas = new ArrayList<>();
+
+
     /**
      * Getters and setters
      */
@@ -82,11 +85,22 @@ public class MedidaCautelarBean implements Serializable {
         return possuiVitima;
     }
 
+    public List<MedidaCautelar> getUltimasMedidas() {
+        return ultimasMedidas;
+    }
 
+    public void setUltimasMedidas(List<MedidaCautelar> ultimasMedidas) {
+        this.ultimasMedidas = ultimasMedidas;
+    }
+
+    /**
+     * Métodos para preencher a lista
+     */
 
     @PostConstruct
-    public void listarTodasMedidas() {
+    public void init() {
         this.todasMedidas = dao.listarTodasMedidas();
+        this.ultimasMedidas = dao.listarMedidasParaPaginaInicial();
     }
 
 
@@ -98,12 +112,16 @@ public class MedidaCautelarBean implements Serializable {
             RequestContext contexto = RequestContext.getCurrentInstance();
             contexto.execute("swal('Sucesso!', 'Nova Medida Cautelar inserida no sistema!', 'success')");
             this.medidaCautelar = new MedidaCautelar();
+            init();
         } else {
             RequestContext contexto = RequestContext.getCurrentInstance();
             contexto.execute("swal('Erro!', 'Alguma coisa deu errado! Contate o administrador do sistema', 'error')");
         }
     }
 
+    /**
+     * Método que irá atualizar informações de uma nova medida no sistema
+     */
     public void atualizarMedida() {
 
 
