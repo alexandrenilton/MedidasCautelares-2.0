@@ -3,6 +3,7 @@ package br.com.agilles.medidascautelares.pessoa;
 import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -72,5 +73,12 @@ public class PessoaDao {
     public Pessoa buscarPorId(Long id) {
         Pessoa pessoa = manager.find(Pessoa.class, id);
         return pessoa;
+    }
+
+    public List<Pessoa> pessoasPorBairro() {
+        List<Pessoa> pessoas = new ArrayList<>();
+        Query query = manager.createQuery("SELECT  p from Pessoa p order by p.endereco.bairro");
+        pessoas = query.getResultList();
+        return pessoas;
     }
 }
