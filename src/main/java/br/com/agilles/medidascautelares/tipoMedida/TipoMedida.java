@@ -8,10 +8,11 @@ import javax.persistence.Transient;
  */
 
 public enum TipoMedida {
-    COMPARECIMENTO_MENSAL("Comparecimento Mensal em Juízo e na Central de Egressos"),
-    PROIBICAO_AUSENTAR("Proibição de ausentar-se da comarca sem autorização"),
-    PROIBICAO_CONTATO("Proibido contato com a vítima ou familiares"),
-    RECOLHIMENTO_DOMICILIAR("Recolhimento domiciliar, inclusive aos sábados, domingos e feriados, após as 23:00h");
+    COMPARECIMENTO_MENSAL("Comparecimento Periódico em Juízo"),
+    PROIBICAO_ACESSO("Proibição de Acesso ou Frequência à determinados lugares"),
+    PROIBICAO_AUSENTAR("Proibição de ausentar-se da comarca"),
+    PROIBICAO_CONTATO("Proibição de Manter contato com Pessoa Determinada"),
+    RECOLHIMENTO_DOMICILIAR("Recolhimento domiciliar no período noturno e nos dias de folga");
 
 
     private String descricao;

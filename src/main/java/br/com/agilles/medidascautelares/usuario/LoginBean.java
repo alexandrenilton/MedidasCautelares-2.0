@@ -29,15 +29,15 @@ public class LoginBean implements Serializable {
             } else {
                 RequestContext contexto = RequestContext.getCurrentInstance();
                 contexto.execute("swal('Quase lá!', 'Você iniciou seu registro, mas ainda não foi liberado seu acesso', 'warning')");
-                return "";
             }
 
         } else {
             RequestContext contexto = RequestContext.getCurrentInstance();
             contexto.execute("swal('Erro', 'Funcional ou senha não confere', 'error')");
 
-            return "";
         }
+        return "";
+
     }
 
     public Usuario getUsuario() {
