@@ -7,19 +7,12 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition template="template.xhtml">
-    <ui:define name="breadcumb-title">
-        <h5 class="breadcrumbs-title">Página de Relatórios</h5>
-    </ui:define>
-
-    <ui:define name="breadcumb">
-        <a href="#">Relatórios</a>
-    </ui:define>
 
     <ui:define name="conteudo">
         <h:form>
             <p class="caption">Relatórios!</p>
-            <h:selectOneRadio name="grupo" id="radioButton" styleClass="with-gap" value="#{relatorios.porBairro}">
-                <f:selectItem itemLabel="Por Bairro" itemValue="true"/>
+            <h:selectOneRadio name="grupo" id="radioButton" styleClass="with-gap">
+                <f:selectItem itemLabel="Por Bairro"/>
                 <f:selectItem itemLabel="Por Tipo de Medida Cautelar"/>
                 <f:selectItem itemLabel="Por Pessoa"/>
             </h:selectOneRadio>
@@ -62,8 +55,6 @@
 
                             </ul>
 
-
-
                             <ul class="collection with-header">
                                 <li class="collection-header">
                                     <h4>Odécio Degan</h4>
@@ -73,17 +64,17 @@
                                         class="red-text">Rua 7, nº 98 </i>
                                     <ul style="list-style-type: disc; margin-left: 30px; margin-top: 10px">
                                         <li style="list-style-type: disc; margin-top: 10px">Comparecimento Periódico em Juízo</li>
-                                        <li style="list-style-type: disc; margin-top: 10px">Recolhimento domiciliar no período noturno e nos dias de folga</li>
+                                        <li style="list-style-type: disc; margin-top: 10px">Proibição de Manter contato com Pessoa Determinada</li>
                                         <li style="list-style-type: disc; margin-top: 10px">Proibição de Acesso ou Frequência à determinados lugares </li>
 
                                     </ul>
                                 </li>
                                 <li class="collection-item">
-                                    <strong> Mauricio de Souza</strong> - <i
-                                        class="red-text">Rua 18, nº 33 </i>
+                                    <strong> Luis Pereira da Silva</strong> - <i
+                                        class="red-text">Rua Anchizes Ferreira Catanhede, nº 233 </i>
                                     <ul style="list-style-type: disc; margin-left: 30px; margin-top: 10px">
                                         <li style="list-style-type: disc; margin-top: 10px">Comparecimento Periódico em Juízo</li>
-                                        <li style="list-style-type: disc; margin-top: 10px">Recolhimento domiciliar no período noturno e nos dias de folga</li>
+                                        <li style="list-style-type: disc; margin-top: 10px">Proibição de Manter contato com Pessoa Determinada</li>
                                         <li style="list-style-type: disc; margin-top: 10px">Proibição de Acesso ou Frequência à determinados lugares </li>
 
                                     </ul>

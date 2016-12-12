@@ -1,7 +1,10 @@
 package br.com.agilles.medidascautelares.medida;
 
+import br.com.agilles.medidascautelares.endereco.Endereco;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -67,6 +70,7 @@ public class MedidaCautelarDao {
         return medidas;
 
     }
+
 
 
 }
