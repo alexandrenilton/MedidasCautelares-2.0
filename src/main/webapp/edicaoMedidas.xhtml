@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="template.xhtml">
+
+        <ui:define name="breadcumb-title">
+            <h5 class="breadcrumbs-title">Edição de Medidas</h5>
+
+        </ui:define>
+        <ui:define name="breadcumb">
+            <a href="#">Edição de Medidas</a>
+        </ui:define>
+        <ui:define name="conteudo">
+            <p class="caption">Edição de Medida Cautelar!</p>
+
+            <div class="divider"></div>
+            <h:form styleClass="col s12" id="form">
+
+                <div id="basic-form" class="section">
+                    <div class="row">
+                        <!-- Cadastro das informações do Processo -->
+                        <div class="col s12 m4 16">
+                            <div class="card-panel">
+                                <h4 class="header">Informações do Processo</h4>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="input-field col s12 m12">
+                                            <i class="mdi-action-account-circle prefix"></i>
+                                            <p:inputMask mask="9999999-99.9999.9.99.9999" id="processo"
+                                                         value="#{medidaCautelarBean.medidaCautelar.processo}"/>
+                                            <label jsf:for="processo">Processo</label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col m12 s12">
+                                            <i class="mdi-action-face-unlock prefix"></i>
+                                            <p:inputText id="local" type="text"
+                                                         value="#{medidaCautelarBean.medidaCautelar.local}"/>
+                                            <label jsf:for="local">Local</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-left: 10px; margin-top: 20px;">
+                                        <div class="switch">
+                                            Possui Vítima?
+                                            <div class="right-align" style="margin-right: 15px;">
+                                                <label class="right-align">
+                                                    Não
+                                                    <input type="checkbox" jsf:id="possuiVitima" 
+                                                           jsf:value="#{medidaCautelarBean.possuiVitima}">
+                                                        <p:ajax update=":form:vitima"  />
+                                                    </input>
+                                                    <span class="lever"></span> Sim
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Informações da Pessoa (auto complete) -->
+
+                        <div class="col s12 m4 16">
+                            <div class="card-panel">
+                                <h4 class="header">Informações da Pessoa</h4>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="input-field col s12 m12"><span
+                                                class="mdi-action-account-circle prefix"></span>
+                                            <p:autoComplete id="pessoa" emptyMessage="Pessoa não encontrada"
+                                                            style="margin-left: 45px"
+                                                            completeMethod="#{pessoaBean.completarPessoas}"
+                                                            value="#{medidaCautelarBean.medidaCautelar.pessoa}" var="pessoa"
+                                                            itemLabel="#{pessoa.nome}" itemValue="#{pessoa}"
+                                                            converter="#{pessoaConverter}"
+                                                            minQueryLength="3" placeholder="Pessoa" size="100">
+                                                <p:ajax event="itemSelect"
+                                                        update=":form:mae :form:documento :form:nascimento"
+                                                        process="@this"/>
+
+                                            </p:autoComplete>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col m12 s12">
+                                            <i class="mdi-action-face-unlock prefix"></i>
+                                            <p:inputText id="mae" type="text" disabled="true" placeholder="Mãe"
+                                                         value="#{medidaCautelarBean.medidaCautelar.pessoa.mae}"/>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <i class="mdi-action-picture-in-picture prefix"></i>
+                                            <p:inputText id="documento" disabled="true" type="text" placeholder="Documento"
+                                                         value="#{medidaCautelarBean.medidaCautelar.pessoa.documento}"/>
+                                        </div>
+
+                                        <div class="input-field col s12 m6">
+                                            <i class="mdi-editor-insert-invitation prefix"></i>
+                                            <p:inputText id="nascimento" type="date" disabled="true"
+                                                         placeholder="Nascimento"
+                                                         value="#{medidaCautelarBean.medidaCautelar.pessoa.nascimento}"
+                                                         styleClass="datepicker"/>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Informações da V´itima-->
+
+                        <div class="col s12 m4 16">
+                            <div class="card-panel">
+                                <h4 class="header">Informações da Vítima</h4>
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="input-field col s12 m12">
+                                            <i class="mdi-action-account-circle prefix"></i>
+                                            <p:autoComplete id="vitima" emptyMessage="Pessoa não encontrada"
+                                                            style="margin-left: 45px"
+                                                            disabled="#{!medidaCautelarBean.possuiVitima}"
+                                                            completeMethod="#{vitimaBean.completarVitimas}"
+                                                            value="#{medidaCautelarBean.medidaCautelar.vitima}"
+                                                            var="vitima"
+                                                            itemLabel="#{vitima.nome}" itemValue="#{vitima}"
+                                                            converter="#{vitimaConverter}"
+                                                            minQueryLength="3" placeholder="Vítima" size="100">
+                                                <p:ajax event="itemSelect"
+                                                        update=":form:maeVitima :form:documentoVitima :form:nascimentoVitima"
+                                                        process="@this"/>
+
+                                            </p:autoComplete>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col m12 s12">
+                                            <i class="mdi-action-face-unlock prefix"></i>
+                                            <p:inputText id="maeVitima" type="text" disabled="true"
+                                                         placeholder="Mãe"
+                                                         value="#{medidaCautelarBean.medidaCautelar.vitima.mae}"/>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12 m6">
+                                            <i class="mdi-action-picture-in-picture prefix"></i>
+                                            <p:inputText id="documentoVitima" disabled="true" type="text"
+                                                         placeholder="Documento"
+                                                         value="#{medidaCautelarBean.medidaCautelar.vitima.documento}"/>
+
+                                        </div>
+
+                                        <div class="input-field col s12 m6">
+                                            <i class="mdi-editor-insert-invitation prefix"></i>
+                                            <p:inputText id="nascimentoVitima" type="date" disabled="true"
+                                                         placeholder="Nascimento"
+                                                         value="#{medidaCautelarBean.medidaCautelar.vitima.nascimento}"
+                                                         styleClass="datepicker"/>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Cadastro das Medidas Cautelares -->
+
+
+                        <div class="col s12 m12  16" jsf:id="painel">
+                            <div class="card-panel">
+                                <h4 class="header">Medidas Cautelares</h4>
+                                <div class="row">
+                                    <div class="input-field col s12 m12 ">
+                                        <h:selectManyCheckbox value="#{medidaCautelarBean.medidaCautelar.tipoMedida}"
+                                                              layout="pageDirection" converter="tipoMedidaConverter">
+                                            <f:selectItems value="#{medidaCautelarBean.tipoMedidas}" itemValue="#{tipo}"
+                                                           var="tipo" itemLabel="#{tipo.descricao}"/>
+                                        </h:selectManyCheckbox>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <button update="@form" class="btn waves-effect waves-light blue col m3 s12"
+                        style="margin-left: 10px;" jsf:action="#{medidaCautelarBean.gravarMedida}">
+                    Salvar
+                    <i class="mdi-action-backup right"></i>
+                </button>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

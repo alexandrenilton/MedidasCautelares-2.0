@@ -36,7 +36,6 @@ public class MedidaCautelarBean implements Serializable {
     private List<MedidaCautelar> relatorioMedidas = new ArrayList<>();
 
 
-
     /**
      * Getters and setters
      */
@@ -47,7 +46,6 @@ public class MedidaCautelarBean implements Serializable {
     public MedidaCautelar getMedidaCautelar() {
         return medidaCautelar;
     }
-
 
     public void setRelatorioMedidas(List<MedidaCautelar> relatorioMedidas) {
         this.relatorioMedidas = relatorioMedidas;
@@ -101,6 +99,10 @@ public class MedidaCautelarBean implements Serializable {
         this.ultimasMedidas = ultimasMedidas;
     }
 
+    public List<MedidaCautelar> getRelatorioMedidas() {
+        return dao.relatorios();
+    }
+
     /**
      * Métodos para preencher a lista
      */
@@ -133,7 +135,9 @@ public class MedidaCautelarBean implements Serializable {
     public void atualizarMedida() {
     }
 
-
+    public String goEditarMedidas(){
+        return "edicaoMedidas";
+    }
 
 }
 
