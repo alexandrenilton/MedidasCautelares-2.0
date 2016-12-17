@@ -132,7 +132,16 @@ public class MedidaCautelarBean implements Serializable {
     /**
      * Método que irá atualizar informações de uma nova medida no sistema
      */
-    public void atualizarMedida() {
+    public String atualizarMedida() {
+        if (dao.atualizar(medidaSelecionada)) {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Sucesso!', 'Dados alterados com sucesso!', 'success')");
+        } else {
+            RequestContext contexto = RequestContext.getCurrentInstance();
+            contexto.execute("swal('Erro!', 'Algo aconteceu errado, tente novamente ou entre em contato com o Administrador do sistema!', 'error')");
+        }
+        return "consultaMedidas";
+
     }
 
     public String goEditarMedidas(){

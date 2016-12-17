@@ -30,9 +30,10 @@
                                 <div class="row">
                                     <div class="row">
                                         <div class="input-field col s12 m12">
+                                            <h:inputHidden value="#{medidaCautelarBean.medidaSelecionada.id}" />
                                             <i class="mdi-action-account-circle prefix"></i>
                                             <p:inputMask mask="9999999-99.9999.9.99.9999" id="processo"
-                                                         value="#{medidaCautelarBean.medidaCautelar.processo}"/>
+                                                         value="#{medidaCautelarBean.medidaSelecionada.processo}"/>
                                             <label jsf:for="processo">Processo</label>
 
                                         </div>
@@ -42,7 +43,7 @@
                                         <div class="input-field col m12 s12">
                                             <i class="mdi-action-face-unlock prefix"></i>
                                             <p:inputText id="local" type="text"
-                                                         value="#{medidaCautelarBean.medidaCautelar.local}"/>
+                                                         value="#{medidaCautelarBean.medidaSelecionada.local}"/>
                                             <label jsf:for="local">Local</label>
                                         </div>
                                     </div>
@@ -81,7 +82,7 @@
                                             <p:autoComplete id="pessoa" emptyMessage="Pessoa não encontrada"
                                                             style="margin-left: 45px"
                                                             completeMethod="#{pessoaBean.completarPessoas}"
-                                                            value="#{medidaCautelarBean.medidaCautelar.pessoa}" var="pessoa"
+                                                            value="#{medidaCautelarBean.medidaSelecionada.pessoa}" var="pessoa"
                                                             itemLabel="#{pessoa.nome}" itemValue="#{pessoa}"
                                                             converter="#{pessoaConverter}"
                                                             minQueryLength="3" placeholder="Pessoa" size="100">
@@ -98,7 +99,7 @@
                                         <div class="input-field col m12 s12">
                                             <i class="mdi-action-face-unlock prefix"></i>
                                             <p:inputText id="mae" type="text" disabled="true" placeholder="Mãe"
-                                                         value="#{medidaCautelarBean.medidaCautelar.pessoa.mae}"/>
+                                                         value="#{medidaCautelarBean.medidaSelecionada.pessoa.mae}"/>
 
                                         </div>
                                     </div>
@@ -107,14 +108,14 @@
                                         <div class="input-field col s12 m6">
                                             <i class="mdi-action-picture-in-picture prefix"></i>
                                             <p:inputText id="documento" disabled="true" type="text" placeholder="Documento"
-                                                         value="#{medidaCautelarBean.medidaCautelar.pessoa.documento}"/>
+                                                         value="#{medidaCautelarBean.medidaSelecionada.pessoa.documento}"/>
                                         </div>
 
                                         <div class="input-field col s12 m6">
                                             <i class="mdi-editor-insert-invitation prefix"></i>
                                             <p:inputText id="nascimento" type="date" disabled="true"
                                                          placeholder="Nascimento"
-                                                         value="#{medidaCautelarBean.medidaCautelar.pessoa.nascimento}"
+                                                         value="#{medidaCautelarBean.medidaSelecionada.pessoa.nascimento}"
                                                          styleClass="datepicker"/>
                                         </div>
                                     </div>
@@ -137,7 +138,7 @@
                                                             style="margin-left: 45px"
                                                             disabled="#{!medidaCautelarBean.possuiVitima}"
                                                             completeMethod="#{vitimaBean.completarVitimas}"
-                                                            value="#{medidaCautelarBean.medidaCautelar.vitima}"
+                                                            value="#{medidaCautelarBean.medidaSelecionada.vitima}"
                                                             var="vitima"
                                                             itemLabel="#{vitima.nome}" itemValue="#{vitima}"
                                                             converter="#{vitimaConverter}"
@@ -155,7 +156,7 @@
                                             <i class="mdi-action-face-unlock prefix"></i>
                                             <p:inputText id="maeVitima" type="text" disabled="true"
                                                          placeholder="Mãe"
-                                                         value="#{medidaCautelarBean.medidaCautelar.vitima.mae}"/>
+                                                         value="#{medidaCautelarBean.medidaSelecionada.vitima.mae}"/>
 
                                         </div>
                                     </div>
@@ -164,7 +165,7 @@
                                             <i class="mdi-action-picture-in-picture prefix"></i>
                                             <p:inputText id="documentoVitima" disabled="true" type="text"
                                                          placeholder="Documento"
-                                                         value="#{medidaCautelarBean.medidaCautelar.vitima.documento}"/>
+                                                         value="#{medidaCautelarBean.medidaSelecionada.vitima.documento}"/>
 
                                         </div>
 
@@ -172,7 +173,7 @@
                                             <i class="mdi-editor-insert-invitation prefix"></i>
                                             <p:inputText id="nascimentoVitima" type="date" disabled="true"
                                                          placeholder="Nascimento"
-                                                         value="#{medidaCautelarBean.medidaCautelar.vitima.nascimento}"
+                                                         value="#{medidaCautelarBean.medidaSelecionada.vitima.nascimento}"
                                                          styleClass="datepicker"/>
 
                                         </div>
@@ -191,7 +192,7 @@
                                 <h4 class="header">Medidas Cautelares</h4>
                                 <div class="row">
                                     <div class="input-field col s12 m12 ">
-                                        <h:selectManyCheckbox value="#{medidaCautelarBean.medidaCautelar.tipoMedida}"
+                                        <h:selectManyCheckbox value="#{medidaCautelarBean.medidaSelecionada.tipoMedida}"
                                                               layout="pageDirection" converter="tipoMedidaConverter">
                                             <f:selectItems value="#{medidaCautelarBean.tipoMedidas}" itemValue="#{tipo}"
                                                            var="tipo" itemLabel="#{tipo.descricao}"/>
@@ -213,7 +214,7 @@
                 </div>
 
                 <button update="@form" class="btn waves-effect waves-light blue col m3 s12"
-                        style="margin-left: 10px;" jsf:action="#{medidaCautelarBean.gravarMedida}">
+                        style="margin-left: 10px;" jsf:action="#{medidaCautelarBean.atualizarMedida}">
                     Salvar
                     <i class="mdi-action-backup right"></i>
                 </button>

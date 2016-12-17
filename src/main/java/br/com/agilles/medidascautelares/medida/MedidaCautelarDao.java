@@ -86,4 +86,18 @@ public class MedidaCautelarDao {
         return medidas;
     }
 
+    public boolean atualizar(MedidaCautelar medidaSelecionada) {
+        boolean atualizado = false;
+        try {
+            manager.getTransaction().begin();
+            manager.merge(medidaSelecionada);
+            manager.getTransaction().commit();
+            atualizado = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            manager.close();
+        }
+        return atualizado;
+    }
 }
