@@ -13,53 +13,53 @@
         <div class="divider"></div>
 
         <div id="basic-card" class="section">
-            <h4 class="header">Medidas Cautelares </h4>
+        <h4 class="header">Medidas Cautelares </h4>
 
-            <div class="row">
+        <div class="row">
 
-                <div class="col s12 m12 l9 ">
+            <div class="col s12 m12 l9 ">
 
-                    <div class="row">
-                        <ui:repeat value="#{medidaCautelarBean.ultimasMedidas}" var="medida">
-                            <div class="col s12 m6 center-align">
-                                <div class="card  indigo darken-4  hoverable">
-                                    <div class="card-content white-text">
+                <div class="row">
+                    <ui:repeat value="#{medidaCautelarBean.ultimasMedidas}" var="medida">
+                        <div class="col s12 m6 center-align">
+                            <div class="card  indigo darken-4  hoverable">
+                                <div class="card-content white-text">
                                     <span class="card-title activator  text-darken-4">#{medida.pessoa.nome} <i
                                             class="mdi-navigation-more-vert right"></i></span>
-                                        <p>#{medida.pessoa.endereco.cidade}</p>
-                                        <p>#{medida.pessoa.endereco.bairro}</p>
-                                    </div>
-                                    <div class="card-action"><br/>
-                                        <h:outputText styleClass="lime-text text-accent-1" value="#{medida.processo}" />
-                                    </div>
+                                    <p>#{medida.pessoa.endereco.cidade}</p>
+                                    <p>#{medida.pessoa.endereco.bairro}</p>
+                                </div>
+                                <div class="card-action"><br/>
+                                    <h:outputText styleClass="lime-text text-accent-1" value="#{medida.processo}" />
+                                </div>
 
-                                    <div class="card-reveal">
+                                <div class="card-reveal">
                                     <span class="card-title grey-text text-darken-4"><strong>Medidas</strong> <i
                                             class="mdi-navigation-close right"></i></span>
-                                        <ui:repeat value="#{medida.tipoMedida}" var="tipomedida">
-                                            <ul style="list-style-type: disc">
-                                                <li style="list-style-type: disc">
-                                                    <p>
-                                                        <h:outputText value="#{tipomedida.descricao}"/>
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                        </ui:repeat>
-                                    </div>
-
+                                    <ui:repeat value="#{medida.tipoMedida}" var="tipomedida">
+                                        <ul style="list-style-type: disc">
+                                            <li style="list-style-type: disc">
+                                                <p>
+                                                    <h:outputText value="#{tipomedida.descricao}"/>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </ui:repeat>
                                 </div>
+
                             </div>
+                        </div>
 
 
-                        </ui:repeat>
-                    </div>
-
-
+                    </ui:repeat>
                 </div>
+
+
             </div>
-
-
         </div>
+
+
+    </div>
 
 
     </ui:define>
